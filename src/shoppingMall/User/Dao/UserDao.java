@@ -28,10 +28,12 @@ public class UserDao {
 		ArrayList<User> currentUsers = UserRepository.getUsers();
 		currentUsers.add(user);
 		
-		success=true;
+		success = true;
 		
 		return success;
-		
-		
+			
 	}
+
+
+	
 }

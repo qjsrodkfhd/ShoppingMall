@@ -10,9 +10,7 @@ public class Main {
 		
 		new MainController();
 
-	
-		MainView mainView = new MainView();
-		mainView.mainView();
+		MainController.requestMainView();
 		
 		ProductInsertView piv = new ProductInsertView();
 		piv.productInsertView();

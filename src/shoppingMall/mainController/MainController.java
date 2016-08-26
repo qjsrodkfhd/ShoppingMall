@@ -6,6 +6,10 @@ import shoppingMall.product.controller.ProductController;
 =======
 import shoppingMall.Login.Controller.LoginController;
 import shoppingMall.User.Controller.UserController;
+<<<<<<< HEAD
+>>>>>>> choiwj1012/master
+=======
+import shoppingMall.mainView.MainView;
 >>>>>>> choiwj1012/master
 
 public class MainController {
@@ -68,4 +72,18 @@ public class MainController {
 //		return articleController;
 //	}
 
+	
+	public static void requestMainView(){
+		
+		MainView mainView = new MainView();
+		mainView.mainView();
+		
+	}
+	
+	public static void systemExit(){
+		
+		System.exit(0);
+		
+	}
+	
 }
