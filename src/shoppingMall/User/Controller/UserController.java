@@ -8,6 +8,7 @@ import shoppingMall.User.View.UserListView;
 import shoppingMall.User.View.UserManagementMenuView;
 import shoppingMall.User.View.UserSearchView;
 import shoppingMall.User.View.UserSignView;
+import shoppingMall.User.View.UserUpdateView;
 import shoppingMall.User.Vo.User;
 import shoppingMall.mainController.MainController;
 import shoppingMall.mainView.MainAlertView;
@@ -24,13 +25,13 @@ public class UserController {
 		userDao = new UserDao();
 
 	}
-	
-	
+
+
 	public void requestUserMenu(){
-		
+
 		UserManagementMenuView userMenu = new UserManagementMenuView();
 		userMenu.userManagementMenuView();
-		
+
 	}
 
 
@@ -69,51 +70,80 @@ public class UserController {
 
 	}
 
-	
+
 	public void requestUserSearch(){
-		
+
 		UserSearchView userSearch = new UserSearchView();
 		userSearch.getSearchNumber();
-		
+
 	}
-	
-	
+
+
 	public void requestUserSearchData(int getSearchNumber){
-		
-		 User selectedUser = userDao.searchUser(getSearchNumber);
-		 
-		 if(selectedUser == null){
-			 MainAlertView alertView = new MainAlertView();
+
+		User selectedUser = userDao.searchUser(getSearchNumber);
+
+		if(selectedUser == null){
+			MainAlertView alertView = new MainAlertView();
 			alertView.alert("실패");
 			return;
-		 }
-		 
-		 UserSearchView userSearchView = new UserSearchView();
-		 userSearchView.outputSearchProduct(selectedUser);
-		 
-		 
-	
+		}
+
+		UserSearchView userSearchView = new UserSearchView();
+		userSearchView.outputSearchProduct(selectedUser);
+
+
+
 	}
 
-	
+
 	public void requestDeleteUser(){
-		
+
 		DeleteUserView deleteUserView = new DeleteUserView();
 		deleteUserView.deleteUserView();
+
+
+	}
+
+
+	public void requestDeleteUserData(int deleteUserNumber){
+
+		User deleteUser = userDao.deleteUser(deleteUserNumber);
+
+
+
+
+	}
+
+
+	public void requestUpdateUser(){
+
+		UserUpdateView userUpdateView = new UserUpdateView();
+		userUpdateView.updateUserView();
 		
+	}
+	
+
+	public void requestUpdateUserData(User updateUser){
+		
+		boolean success = userDao.updateUser(updateUser);
+		
+		if(success){
+	
+			System.out.println("성공");
+			MainView mainView = new MainView();
+			mainView.mainView();
+
+		}else{
+
+			System.out.println("실패");
+			
+		}
 		
 	}
 
-	
-	public void requestDeleteUserData(int deleteUserNumber){
-		
-		User deleteUser = userDao.deleteUser(deleteUserNumber);
-		
-		
-		
-		
-	}
 }
+
 
 
 
