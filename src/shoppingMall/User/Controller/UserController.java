@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import shoppingMall.User.Dao.UserDao;
 import shoppingMall.User.View.UserListView;
+import shoppingMall.User.View.UserManagementMenuView;
 import shoppingMall.User.View.UserSignView;
 import shoppingMall.User.Vo.User;
 import shoppingMall.mainView.MainView;
@@ -18,6 +19,14 @@ public class UserController {
 
 		userDao = new UserDao();
 
+	}
+	
+	
+	public void requestUserMenu(){
+		
+		UserManagementMenuView userMenu = new UserManagementMenuView();
+		userMenu.userManagementMenuView();
+		
 	}
 
 
