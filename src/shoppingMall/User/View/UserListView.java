@@ -14,7 +14,7 @@ public class UserListView {
 	
 	public UserListView(){
 		
-	 keyboard = new Scanner(System.in);
+	 this.keyboard = new Scanner(System.in);
 		
 	}
 
