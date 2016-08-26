@@ -29,4 +29,8 @@ public class ProductDao {
 		
 	}
 	
+	public void deleteProduct() {
+		ProductRepository.getProducts().remove(0);
+	}
+	
 }

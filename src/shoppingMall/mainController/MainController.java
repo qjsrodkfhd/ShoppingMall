@@ -1,40 +1,24 @@
 package shoppingMall.mainController;
 
-<<<<<<< HEAD
-import shoppingMall.mainView.MainView;
-import shoppingMall.product.controller.ProductController;
-=======
 import shoppingMall.Login.Controller.LoginController;
 import shoppingMall.User.Controller.UserController;
-<<<<<<< HEAD
->>>>>>> choiwj1012/master
-=======
 import shoppingMall.mainView.MainView;
->>>>>>> choiwj1012/master
+import shoppingMall.product.controller.ProductController;
 
 public class MainController {
 
 	// variable
-<<<<<<< HEAD
-	// private static UserController userController;
+	 private static UserController userController;
 	 private static ProductController productController;
 	// private static OrderController orderController;
-	// private static LoginController loginController;
+	 private static LoginController loginController;
 	// private static ArticleController articleController;	
 	
-=======
-	private static UserController userController;
-	//private static ProductController productController;
-	//private static OrderController orderController;
-	private static LoginController loginController;
-	//private static ArticleController articleController;	
-
->>>>>>> choiwj1012/master
 	// constructor
 	public MainController(){
 
 		userController = new UserController();
-		//productController = new ProductController();
+		productController = new ProductController();
 		//orderController = new OrderController();
 		loginController = new LoginController();
 		//articleController = new ArticleController();
@@ -42,35 +26,17 @@ public class MainController {
 	}
 
 	// getter and setter
-<<<<<<< HEAD
-//	public static UserController getUserController() {
-//		return userController;
-//	}
-//
-	public static ProductController getProductController() {
-		return productController;
-	}
-=======
 	public static UserController getUserController() {
 		return userController;
 	}
 
-//	public static ProductController getProductController() {
-//		return productController;
-//	}
->>>>>>> choiwj1012/master
-//
-//	public static OrderController getOrderController() {
-//		return orderController;
-//	}
+	public static ProductController getProductController() {
+		return productController;
+	}
 
 	public static LoginController getLoginController() {
 		return loginController;
 	}
-
-//	public static ArticleController getArticleController() {
-//		return articleController;
-//	}
 
 	
 	public static void requestMainView(){
@@ -79,6 +45,7 @@ public class MainController {
 		mainView.mainView();
 		
 	}
+	
 	
 	public static void systemExit(){
 		

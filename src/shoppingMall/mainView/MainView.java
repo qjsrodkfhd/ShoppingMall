@@ -49,14 +49,12 @@ public class MainView {
 
 					System.out.println("[반갑습니다.신규 회원 이시군요.고객님과의 인연을 소중하게 생각합니다.]");
 					MainController.getUserController().requestUserSignUp();
-					isFind = true;
 					break;
 
 				} else if (selectedNumber == 2) {
 
 					System.out.println("[기존 고객님 이시군요.]");
 					MainController.getLoginController().requestLogin();
-					isFind = true;
 					break;
 
 				} else if (selectedNumber == 0) {
