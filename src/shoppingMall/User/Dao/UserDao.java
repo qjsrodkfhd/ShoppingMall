@@ -20,23 +20,36 @@ public class UserDao {
 	public boolean userSignUp(User userSign){
 
 		boolean success = false;
-
-		int currentUserNumber = UserRepository.getLastUserPosition();
-		currentUserNumber = currentUserNumber + 1;
-		UserRepository.setLastUserPosition(currentUserNumber);
-
-		userSign.setUserNumber(currentUserNumber);
-
-		ArrayList<User> currentUsers = UserRepository.getUsers();
-		currentUsers.add(userSign);
-
-		success = true;
+			
+				int currentUserNumber = UserRepository.getLastUserPosition();
+				currentUserNumber = currentUserNumber + 1;
+				UserRepository.setLastUserPosition(currentUserNumber);
+				userSign.setUserNumber(currentUserNumber);
+				
+				ArrayList<User> currentUsers = UserRepository.getUsers();
+				currentUsers.add(userSign);
 
 		return success;
 
 	}
 
-
+	
+	//중복아이디 체크
+	public boolean checkUserId(User userCheckId ){
+		
+		boolean success = false;
+	
+		for(int i=0; i<UserRepository.getUsers().size(); i++){
+		if(userCheckId.getUserID() == UserRepository.getUsers().get(i).getUserID()){
+			return false;
+		}
+	}
+		
+		return success;
+		
+	}
+	
+	
 	//목록
 	public ArrayList<User> userList(){
 
@@ -85,18 +98,25 @@ public class UserDao {
 
 	//유저정보수정
 	public boolean updateUser(User updateUser){
-		
+
 		boolean success = false;
 
-			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserAddr(updateUser.getUserAddr());
-			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserEmail(updateUser.getUserEmail());
-			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserName(updateUser.getUserName());
-			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserPW(updateUser.getUserPW());
-			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserTel(updateUser.getUserTel());
-			
-	return success = true;
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserAddr(updateUser.getUserAddr());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserEmail(updateUser.getUserEmail());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserName(updateUser.getUserName());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserPW(updateUser.getUserPW());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserTel(updateUser.getUserTel());
+
+		return success = true;
 
 	}
 
 	
+	//회원탈퇴
+	public User withdrawUser(){
+		
+		return UserRepository.getUsers().remove(LoginRepository.getLoginUserNumber());
+		
+	}
+
 }

@@ -58,11 +58,11 @@ public class LoginController {
 		
 		if(success=false){
 			
-			new MainAlertView().alert("로그인 되어있지 않습니다.");
+			new MainAlertView().alert("로그인 되어있습니다.");
 			
 		}else{
 			
-			new MainAlertView().alert("로그인 되어있습니다.");
+			new MainAlertView().alert("로그인 되어있지 않습니다.");
 			
 		}
 		return success;

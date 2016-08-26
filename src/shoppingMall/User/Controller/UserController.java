@@ -2,6 +2,7 @@ package shoppingMall.User.Controller;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
 import shoppingMall.User.Dao.UserDao;
 import shoppingMall.User.View.DeleteUserView;
 import shoppingMall.User.View.UserListView;
@@ -10,6 +11,7 @@ import shoppingMall.User.View.UserSearchView;
 import shoppingMall.User.View.UserSignView;
 import shoppingMall.User.View.UserUpdateView;
 import shoppingMall.User.Vo.User;
+import shoppingMall.mainController.MainController;
 import shoppingMall.mainView.MainAlertView;
 import shoppingMall.mainView.MainView;
 
@@ -47,10 +49,9 @@ public class UserController {
 	//회원가입 데이터
 	public void requestUserData(User userSign){
 
-
 		boolean success = userDao.userSignUp(userSign);
-
-		if(success){
+		
+		if(!success){
 
 			System.out.println("성공");
 			MainView mainView = new MainView();
@@ -64,6 +65,18 @@ public class UserController {
 	}
 
 
+	//체크중복아이디
+	public boolean requestCheckUserId(User newUser) {
+
+	      boolean success = false;
+
+	      success = userDao.checkUserId(newUser);
+	      
+	      return success;      
+
+	   }
+	
+	
 	//유저목록
 	public void requestUserList(){
 
@@ -144,6 +157,13 @@ public class UserController {
 	}
 
 
+	//회원탈퇴
+	public void requestWithdrawUser(){
+		
+		userDao.withdrawUser();
+		new MainAlertView().alert("탈퇴 되었습니다.");
+		
+	}
 }
 
 

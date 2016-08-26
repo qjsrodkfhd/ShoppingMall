@@ -24,7 +24,7 @@ public class UserMenuView {
 		
 		while(true){
 			
-			String[] adminMainMenu = {"1. 상품구매", "2. 회원정보관리", "3. 로그 아웃"};
+			String[] adminMainMenu = {"1. 상품구매", "2. 회원정보관리", "3. 로그 아웃", "4. 탈퇴"};
 			
 			for(int i=0; i<adminMainMenu.length; i++){
 				
@@ -50,9 +50,12 @@ public class UserMenuView {
 				MainView mainView = new MainView();
 				mainView.mainView();
 				
-			} else {
+			} else if(selectedMenu == 4){ // 회원탈퇴
 				
-				System.out.println("잘못입력하셨습니다");
+				MainController.getUserController().requestWithdrawUser();
+				MainController.getLoginController().requestLogOut();
+				MainView mainView = new MainView();
+				mainView.mainView();
 				
 			}
 			
