@@ -2,6 +2,24 @@ package shoppingMall.mainView;
 
 import java.util.Scanner;
 
+<<<<<<< HEAD
+import shoppingMall.User.Controller.UserController;
+import shoppingMall.mainController.MainController;
+
+public class MainView {
+
+	// variable
+	Scanner keyboard;
+
+	// constructor
+	public MainView(){
+
+		this.keyboard = new Scanner(System.in);
+
+	}
+
+	//메인메뉴 (회원가입,로그인)관리
+=======
 public class MainView {
 	
 	// variable
@@ -15,6 +33,7 @@ public class MainView {
 	}
 	
 		//메인메뉴 (회원가입,로그인)관리
+>>>>>>> refs/remotes/choiwj1012/master
 	public void mainView(){
 
 		System.out.println("[ 7조 쇼핑몰에 오신걸 환영합니다 ]");
@@ -45,14 +64,24 @@ public class MainView {
 			if(selectedNumber == 1) {
 
 				System.out.println("[반갑습니다.신규 회원 이시군요.고객님과의 인연을 소중하게 생각합니다.]");
+<<<<<<< HEAD
+				/*UserController userController = new UserController();
+				userController.requestUserSignUp();*/
+				MainController.getUserController().requestUserSignUp();
+=======
 				// MainController.getUserController();
+>>>>>>> refs/remotes/choiwj1012/master
 				isFind = true;
 				break;
 
 			} else if (selectedNumber == 2) {
 
 				System.out.println("[기존 고객님 이시군요.]");
+<<<<<<< HEAD
+				MainController.getLoginController().requestLogin();
+=======
 				// MainController.getLoginController();
+>>>>>>> refs/remotes/choiwj1012/master
 				isFind = true;
 				break;
 
