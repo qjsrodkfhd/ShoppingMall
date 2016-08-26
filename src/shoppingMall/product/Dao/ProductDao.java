@@ -13,24 +13,38 @@ public class ProductDao {
 		
 	}
 	
+	
+	//상품등록
 	public void registerProduct(Product newProduct) {
-		
-		//상품등록
+	
 		ProductRepository.setProductLastposition(ProductRepository.getProductLastposition() + 1);
 		ProductRepository.getProducts().add(newProduct);
 	
 	}
 	
+	
+	//상품목록호출	
 	public ArrayList<Product> readProduct() {
 		
-		//상품목록호출
 		ArrayList<Product> listAll = ProductRepository.getProducts();
 		return listAll;
 		
 	}
 	
-	public void deleteProduct() {
-		ProductRepository.getProducts().remove(0);
-	}
 	
+	//선택상품 삭제
+	public boolean deleteProduct(int selectedProductNumber) {
+		
+		boolean success = false;
+		
+			try{
+				ProductRepository.getProducts().remove(selectedProductNumber);
+				success = true;
+			}catch(Exception e ){
+				return success;
+			}
+			
+		return success;
+		
+	}
 }

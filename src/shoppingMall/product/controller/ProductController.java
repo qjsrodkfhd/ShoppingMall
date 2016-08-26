@@ -24,35 +24,46 @@ public class ProductController {
 		//제품 입력뷰 호출
 		ProductInsertView productInsertView = new ProductInsertView();
 		Product newProduct = productInsertView.productInsertView();
-		
+
 		//productDao를 통해 productRepository에 데이터를 저장.
 		productDao.registerProduct(newProduct);
 
 	}
-	
+
 	//제품목록 가져오기
 	public void requestReadProduct() {
-		
+
 		//productDao를 통해 productRepository에서 데이터 호출
 		ArrayList<Product> listAll = productDao.readProduct();
-		
+
 		//productView를 호출
 		ProductReadView productReadView = new ProductReadView();
 		productReadView.productRead(listAll);
-		
+
 	}
 	
-	//제품목록 삭제
-	public void requestDeleteProduct() {
+	//삭제할 제품 번호 가져오기
+	public void requestGetSelectedProductNumber(int selectedProductNumber) {
 		
-		//제품 목록에서 제품 선택
+		//productDao를 통해 productRepository에 데이터 삭제
+		productDao.deleteProduct(selectedProductNumber);
+		
+	}
+
+	//제품목록 삭제
+	public void requestDeleteProductView() {
+
+		//제품 목록에서 제품 선택 View
 		ProductDeleteView productDeleteView = new ProductDeleteView();
 		productDeleteView.productDelete();
 		
+
+	}
+	
+	public void requestUpdateProductView() {
 		
+		//제품 목록에서 수정할 제품 선택 View
 		
-		//productDao를 통해 productRepository에서 데이터 삭제
-		 
 		
 	}
 
