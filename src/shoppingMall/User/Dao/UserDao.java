@@ -2,8 +2,7 @@ package shoppingMall.User.Dao;
 
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
+import shoppingMall.Login.Vo.Login;
 import shoppingMall.User.Repository.UserRepository;
 import shoppingMall.User.Vo.User;
 
@@ -37,6 +36,7 @@ public class UserDao {
 
 	}
 
+
 	//목록
 	public ArrayList<User> userList(){
 
@@ -49,15 +49,16 @@ public class UserDao {
 	}
 
 
+	//조회
 	public User searchUser(int searchNumber){
-		
+
 		User selectedUser = null;
 
 		for(int i=0; i<UserRepository.getUsers().size(); i++){
 			if(searchNumber == UserRepository.getUsers().get(i).getUserNumber()){
 				selectedUser = UserRepository.getUsers().get(i);
 				break;
-			
+
 			}
 		}
 
@@ -65,18 +66,44 @@ public class UserDao {
 
 	}
 
+
 	//관리자가 탈퇴 시키는거
 	public User deleteUser(int searchNumber){
-		
+
 		User deleteUser = null;
-		
+
 		for(int i=0; i<UserRepository.getUsers().size(); i++){
 			if(searchNumber == UserRepository.getUsers().get(i).getUserNumber()){
 				UserRepository.getUsers().remove(i);
 			}
 		}
-		
+
 		return deleteUser;
+
+	}
+
+
+	public boolean updateUser(User updateUser){
+		
+		boolean success = false;
+
+		for(int i = 0; i<UserRepository.getUsers().size(); i++){
+			
+			if(updateUser.getUserID().equals(UserRepository.getUsers().get(i).getUserID())){
+				
+				UserRepository.getUsers().get(i).setUserPW(updateUser.getUserPW());
+				UserRepository.getUsers().get(i).setUserAddr(updateUser.getUserAddr());
+				UserRepository.getUsers().get(i).setUserName(updateUser.getUserName());	
+				UserRepository.getUsers().get(i).setUserEmail(updateUser.getUserEmail());	
+				UserRepository.getUsers().get(i).setUserTel(updateUser.getUserTel());
+				
+				success = true;
+				return success;
+			}
+
+		}
+		
+		return success;
 		
 	}
 

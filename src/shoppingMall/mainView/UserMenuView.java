@@ -41,7 +41,7 @@ public class UserMenuView {
 				
 			} else if(selectedMenu == 2){ // 회원정보관리
 				
-				// 회원정보관리 연결해야함
+				MainController.getUserController().requestUpdateUser();
 				
 			} else if(selectedMenu == 3){ // 로그아웃
 				
