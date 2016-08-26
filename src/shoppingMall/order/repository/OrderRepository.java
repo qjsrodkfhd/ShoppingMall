@@ -6,12 +6,11 @@ import shoppingMall.order.vo.Order;
 
 public class OrderRepository {
 
-	
 	// 주문으로 담겨진 상품의 리스트 배열
 	private static ArrayList<Order> orderList = new ArrayList<Order>(); 
 	
 	// 상품 리스트의 갯수
-	private static int lastOrderNumber = 0;
+	private static int lastOrderNumber;
 
 	// getter and setter
 	public static ArrayList<Order> getOrderList() {

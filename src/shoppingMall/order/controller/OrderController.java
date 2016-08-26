@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import shoppingMall.mainView.MainAlertView;
 import shoppingMall.order.dao.OrderDAO;
 import shoppingMall.order.view.OrderListView;
+import shoppingMall.order.view.OrderMenuView;
 import shoppingMall.order.view.SelectProductNumber;
 import shoppingMall.order.view.UpdateOrderView;
 import shoppingMall.order.vo.Order;
@@ -23,6 +24,14 @@ public class OrderController {
 
 	// method
 	// 주문 요청
+	public void requestOrderMenu(){
+		
+		OrderMenuView orderMenuView = new OrderMenuView();
+		orderMenuView.orderMenu();
+		
+	}
+	
+	
 	public void requestOrder(){
 
 		SelectProductNumber selectProductNumber = new SelectProductNumber(); 

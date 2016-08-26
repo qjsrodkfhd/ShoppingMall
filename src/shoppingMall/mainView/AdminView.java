@@ -37,7 +37,7 @@ public class AdminView {
 			
 			if(selectedMenu == 1){ // 상품관리
 				
-				// 상품관리 연결해야함
+				MainController.getProductController().requestProductMenuView();
 				
 			} else if(selectedMenu == 2){ // 유저관리
 				
