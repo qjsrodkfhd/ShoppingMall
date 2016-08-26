@@ -37,7 +37,7 @@ public class UserMenuView {
 			
 			if(selectedMenu == 1){ // 상품구매
 				
-				// 상품구매 연결해야함
+				MainController.getOrderController().requestOrderMenu();
 				
 			} else if(selectedMenu == 2){ // 회원정보관리
 				

@@ -15,8 +15,8 @@ public class OrderDAO {
 
 		boolean success = false;
 		
-		for(int i=0; i<OrderRepository.getOrderList().size(); i++){
-			if(order.getOrderNumber() == OrderRepository.getOrderList().get(i).getOrderNumber()){
+		for(int i=0; i<ProductRepository.getProducts().size(); i++){
+			if(order.getOrderNumber() == ProductRepository.getProducts().get(i).getProductNumber()){
 				
 				OrderRepository.setLastOrderNumber(OrderRepository.getLastOrderNumber() + 1);
 				OrderRepository.getOrderList().get(i).setOrderNumber(OrderRepository.getLastOrderNumber());
