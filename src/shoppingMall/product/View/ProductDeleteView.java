@@ -13,8 +13,6 @@ public class ProductDeleteView {
 		System.out.println("번호선택 : ");
 		int selectedProductNumber = sc.nextInt();
 		
-		Product selectedProduct = new Product(int selectedProductNumber);
-		
 	}
 
 }
