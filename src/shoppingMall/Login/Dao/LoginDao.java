@@ -10,11 +10,7 @@ public class LoginDao {
 	public LoginDao(){
 
 		new LoginRepository();
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> refs/remotes/origin/master
+		
 	}
 
 
