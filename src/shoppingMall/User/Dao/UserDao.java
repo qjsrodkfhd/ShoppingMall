@@ -2,6 +2,8 @@ package shoppingMall.User.Dao;
 
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import shoppingMall.User.Repository.UserRepository;
 import shoppingMall.User.Vo.User;
 
@@ -35,5 +37,14 @@ public class UserDao {
 	}
 
 
-	
+	public ArrayList<User> userList(){
+		
+		ArrayList<User> userList;
+		
+		userList = UserRepository.getUsers();
+		
+		return userList;
+		
+	}
+
 }

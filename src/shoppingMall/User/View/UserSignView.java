@@ -5,12 +5,12 @@ import java.util.Scanner;
 import shoppingMall.User.Vo.User;
 import shoppingMall.mainController.MainController;
 
-public class UserView {
+public class UserSignView {
 	
 	private Scanner keyboard;
 	
 	
-	public UserView(){
+	public UserSignView(){
 		
 		 keyboard = new Scanner(System.in);
 		
