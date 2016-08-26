@@ -51,14 +51,23 @@ public class ProductDao {
 		
 		boolean success = false;
 		
+<<<<<<< HEAD
 			try {
+=======
+			try{
+>>>>>>> choiwj1012/master
 				
 				ProductRepository.getProducts().remove(selectedProductNumber);
 				success = true;
 				
+<<<<<<< HEAD
 			} catch(Exception e ) {
+=======
+			}catch(Exception e ){
+>>>>>>> choiwj1012/master
 				
 				return success;
+				
 			}
 			
 		return success;

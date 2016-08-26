@@ -3,6 +3,7 @@ package shoppingMall.mainController;
 import shoppingMall.Login.Controller.LoginController;
 import shoppingMall.User.Controller.UserController;
 import shoppingMall.mainView.MainView;
+import shoppingMall.order.controller.OrderController;
 import shoppingMall.product.controller.ProductController;
 
 public class MainController {
@@ -10,7 +11,7 @@ public class MainController {
 	// variable
 	 private static UserController userController;
 	 private static ProductController productController;
-	// private static OrderController orderController;
+	 private static OrderController orderController;
 	 private static LoginController loginController;
 	// private static ArticleController articleController;	
 	
@@ -19,7 +20,7 @@ public class MainController {
 
 		userController = new UserController();
 		productController = new ProductController();
-		//orderController = new OrderController();
+		orderController = new OrderController();
 		loginController = new LoginController();
 		//articleController = new ArticleController();
 
@@ -38,6 +39,9 @@ public class MainController {
 		return loginController;
 	}
 
+	public static OrderController getOrderController(){
+		return orderController;
+	}
 	
 	public static void requestMainView(){
 		

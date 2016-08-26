@@ -43,6 +43,7 @@ public class AdminView {
 				
 				MainController.getUserController().requestUserMenu();
 				
+				
 			} else if(selectedMenu == 3){ // 게시판관리
 				
 				System.out.println("준비중 입니다");

@@ -2,6 +2,8 @@ package shoppingMall.mainView;
 
 import java.util.Scanner;
 
+import shoppingMall.mainController.MainController;
+
 public class UserMenuView {
 
 	// variable
@@ -44,6 +46,7 @@ public class UserMenuView {
 			} else if(selectedMenu == 3){ // 로그아웃
 				
 				System.out.println("로그아웃 하였습니다");
+				MainController.getLoginController().requestLogOut();
 				MainView mainView = new MainView();
 				mainView.mainView();
 				
