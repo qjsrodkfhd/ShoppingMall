@@ -2,7 +2,6 @@ package shoppingMall.User.Dao;
 
 import java.util.ArrayList;
 
-import shoppingMall.Login.Vo.Login;
 import shoppingMall.User.Repository.UserRepository;
 import shoppingMall.User.Vo.User;
 
