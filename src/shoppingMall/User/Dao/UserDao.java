@@ -2,6 +2,7 @@ package shoppingMall.User.Dao;
 
 import java.util.ArrayList;
 
+import shoppingMall.Login.Repository.LoginRepository;
 import shoppingMall.User.Repository.UserRepository;
 import shoppingMall.User.Vo.User;
 
@@ -82,28 +83,20 @@ public class UserDao {
 	}
 
 
+	//유저정보수정
 	public boolean updateUser(User updateUser){
 		
 		boolean success = false;
 
-		for(int i = 0; i<UserRepository.getUsers().size(); i++){
+			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserAddr(updateUser.getUserAddr());
+			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserEmail(updateUser.getUserEmail());
+			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserName(updateUser.getUserName());
+			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserPW(updateUser.getUserPW());
+			UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserTel(updateUser.getUserTel());
 			
-			if(updateUser.getUserID().equals(UserRepository.getUsers().get(i).getUserID())){
-				
-				UserRepository.getUsers().get(i).setUserPW(updateUser.getUserPW());
-				UserRepository.getUsers().get(i).setUserAddr(updateUser.getUserAddr());
-				UserRepository.getUsers().get(i).setUserName(updateUser.getUserName());	
-				UserRepository.getUsers().get(i).setUserEmail(updateUser.getUserEmail());	
-				UserRepository.getUsers().get(i).setUserTel(updateUser.getUserTel());
-				
-				success = true;
-				return success;
-			}
+	return success = true;
 
-		}
-		
-		return success;
-		
 	}
 
+	
 }

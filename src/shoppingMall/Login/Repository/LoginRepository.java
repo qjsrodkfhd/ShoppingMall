@@ -5,10 +5,21 @@ import shoppingMall.Login.Vo.Login;
 public class LoginRepository {
 	
 	private static Login login;
+	private static int loginUserNumber;
 
 	
 	public LoginRepository(){
 		
+	}
+
+
+	public static int getLoginUserNumber() {
+		return loginUserNumber;
+	}
+
+
+	public static void setLoginUserNumber(int loginUserNumber) {
+		LoginRepository.loginUserNumber = loginUserNumber;
 	}
 
 

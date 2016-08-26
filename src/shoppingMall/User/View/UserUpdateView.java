@@ -25,17 +25,11 @@ private Scanner keyboard;
 		System.out.println("[이 름: ]");
 		String userName = keyboard.next();
 		
-		System.out.println("[I D: ]");
-		String userID = keyboard.next();
-		
 		System.out.println("[P W: ]");
 		String userPW = keyboard.next();
 		
 		System.out.println("[E-MAIL: ]");
 		String userEmail = keyboard.next();
-		
-		System.out.println("[나 이: ]");
-		int userAge = keyboard.nextInt();
 		 
 		System.out.println("[주 소: ]");
 		String userAddr = keyboard.next();
@@ -43,7 +37,7 @@ private Scanner keyboard;
 		System.out.println("[전화번호: ]");
 		String userTel = keyboard.next();
 		
-		User updateUser = new User(userID,userPW, userEmail, userName, userAddr, userAge, userTel);
+		User updateUser = new User(null,userPW, userEmail, userName, userAddr, 0, userTel);
 		
 		MainController.getUserController().requestUpdateUserData(updateUser);
 		

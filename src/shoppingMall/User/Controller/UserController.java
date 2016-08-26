@@ -26,6 +26,7 @@ public class UserController {
 	}
 
 
+	//유저메뉴
 	public void requestUserMenu(){
 
 		UserManagementMenuView userMenu = new UserManagementMenuView();
@@ -34,6 +35,7 @@ public class UserController {
 	}
 
 
+	//회원가입
 	public void requestUserSignUp(){
 
 		UserSignView userView = new UserSignView();
@@ -42,6 +44,7 @@ public class UserController {
 	}
 
 
+	//회원가입 데이터
 	public void requestUserData(User userSign){
 
 
@@ -57,9 +60,11 @@ public class UserController {
 
 			System.out.println("실패");
 		}
+		
 	}
 
 
+	//유저목록
 	public void requestUserList(){
 
 		ArrayList<User> userList = userDao.userList();
@@ -70,6 +75,7 @@ public class UserController {
 	}
 
 
+	//유저조회
 	public void requestUserSearch(){
 
 		UserSearchView userSearch = new UserSearchView();
@@ -78,6 +84,7 @@ public class UserController {
 	}
 
 
+	//유저조회 데이터
 	public void requestUserSearchData(int getSearchNumber){
 
 		User selectedUser = userDao.searchUser(getSearchNumber);
@@ -91,55 +98,51 @@ public class UserController {
 		UserSearchView userSearchView = new UserSearchView();
 		userSearchView.outputSearchProduct(selectedUser);
 
-
-
 	}
 
 
+	//유저삭제
 	public void requestDeleteUser(){
 
 		DeleteUserView deleteUserView = new DeleteUserView();
 		deleteUserView.deleteUserView();
 
-
 	}
 
 
+	//유저삭제 데이터
 	public void requestDeleteUserData(int deleteUserNumber){
 
 		User deleteUser = userDao.deleteUser(deleteUserNumber);
 
-
-
-
 	}
 
 
+	//유저수정
 	public void requestUpdateUser(){
 
 		UserUpdateView userUpdateView = new UserUpdateView();
 		userUpdateView.updateUserView();
-		
-	}
-	
 
-	public void requestUpdateUserData(User updateUser){
-		
-		boolean success = userDao.updateUser(updateUser);
-		
-		if(success){
+	}
+
 	
+	//유저수정데이터
+	public void requestUpdateUserData(User updateContent){
+
+
+		boolean success = userDao.updateUser(updateContent);
+
+		if(success){
+
 			System.out.println("성공");
 			MainView mainView = new MainView();
 			mainView.mainView();
 
-		}else{
-
-			System.out.println("실패");
-			
 		}
-		
+
 	}
+
 
 }
 

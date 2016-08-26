@@ -33,6 +33,7 @@ public class LoginDao {
 			if(login.getUserID().equals(UserRepository.getUsers().get(i).getUserID())&&
 					login.getUserPW().equals(UserRepository.getUsers().get(i).getUserPW())){
 					LoginRepository.setLogin(login);
+					LoginRepository.setLoginUserNumber(i);
 					
 				loginUserNumber = i;
 				break;
