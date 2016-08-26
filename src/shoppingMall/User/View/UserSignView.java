@@ -5,12 +5,12 @@ import java.util.Scanner;
 import shoppingMall.User.Vo.User;
 import shoppingMall.mainController.MainController;
 
-public class UserView {
+public class UserSignView {
 	
 	private Scanner keyboard;
 	
 	
-	public UserView(){
+	public UserSignView(){
 		
 		 keyboard = new Scanner(System.in);
 		
@@ -37,7 +37,7 @@ public class UserView {
 		
 		System.out.println("[나 이: ]");
 		int userAge = keyboard.nextInt();
-		
+		 
 		System.out.println("[주 소: ]");
 		String userAddr = keyboard.next();
 		
