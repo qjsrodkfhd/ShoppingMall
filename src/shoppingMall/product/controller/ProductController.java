@@ -2,9 +2,11 @@ package shoppingMall.product.controller;
 
 import java.util.ArrayList;
 
+import shoppingMall.mainView.MainAlertView;
 import shoppingMall.product.Dao.ProductDao;
 import shoppingMall.product.View.ProductDeleteView;
 import shoppingMall.product.View.ProductInsertView;
+import shoppingMall.product.View.ProductMenuView;
 import shoppingMall.product.View.ProductReadView;
 import shoppingMall.product.vo.Product;
 
@@ -26,7 +28,18 @@ public class ProductController {
 		Product newProduct = productInsertView.productInsertView();
 
 		//productDao를 통해 productRepository에 데이터를 저장.
-		productDao.registerProduct(newProduct);
+		boolean success = productDao.registerProduct(newProduct);
+
+		MainAlertView mainAlertView = new MainAlertView();
+
+		if(success) {
+
+			mainAlertView.alert("[!]정상적으로 등록 되었습니다.");
+			requestReadProduct();
+
+		} else {
+			mainAlertView.alert("[!]제품 등록에 실패 했습니다.");
+		}
 
 	}
 
@@ -41,13 +54,24 @@ public class ProductController {
 		productReadView.productRead(listAll);
 
 	}
-	
+
 	//삭제할 제품 번호 가져오기
 	public void requestGetSelectedProductNumber(int selectedProductNumber) {
-		
+
 		//productDao를 통해 productRepository에 데이터 삭제
-		productDao.deleteProduct(selectedProductNumber);
-		
+		boolean success = productDao.deleteProduct(selectedProductNumber);
+
+		MainAlertView mainAlertView = new MainAlertView();
+
+		if(success == true) {
+
+			mainAlertView.alert("[!]삭제되었습니다.");
+
+		} else {
+
+			mainAlertView.alert("[!]삭제를 실패 하였습니다.");
+
+		}
 	}
 
 	//제품목록 삭제
@@ -56,15 +80,21 @@ public class ProductController {
 		//제품 목록에서 제품 선택 View
 		ProductDeleteView productDeleteView = new ProductDeleteView();
 		productDeleteView.productDelete();
-		
 
 	}
-	
+
 	public void requestUpdateProductView() {
-		
+
 		//제품 목록에서 수정할 제품 선택 View
-		
-		
+
+
+	}
+
+	public void requestProductMenuView() {
+
+		ProductMenuView productMenuView = new ProductMenuView();
+		productMenuView.productMenuView();
+
 	}
 
 }

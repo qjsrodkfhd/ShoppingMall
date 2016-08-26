@@ -15,10 +15,24 @@ public class ProductDao {
 	
 	
 	//상품등록
-	public void registerProduct(Product newProduct) {
+	public boolean registerProduct(Product newProduct) {
 	
-		ProductRepository.setProductLastposition(ProductRepository.getProductLastposition() + 1);
-		ProductRepository.getProducts().add(newProduct);
+		boolean success = false;
+		
+		if(newProduct == null) {
+			
+			return success;
+			
+		} else {
+			
+			ProductRepository.setProductLastposition(ProductRepository.getProductLastposition() + 1);
+			newProduct.setProductNumber(ProductRepository.getProductLastposition());
+			ProductRepository.getProducts().add(newProduct);
+			success = true;
+			
+		}
+		
+		return success;
 	
 	}
 	
@@ -37,10 +51,13 @@ public class ProductDao {
 		
 		boolean success = false;
 		
-			try{
+			try {
+				
 				ProductRepository.getProducts().remove(selectedProductNumber);
 				success = true;
-			}catch(Exception e ){
+				
+			} catch(Exception e ) {
+				
 				return success;
 			}
 			

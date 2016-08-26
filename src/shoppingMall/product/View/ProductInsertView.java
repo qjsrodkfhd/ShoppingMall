@@ -27,7 +27,6 @@ public class ProductInsertView {
 		System.out.println();
 		
 		Product newProduct = new Product(productName, productPrice, productBrandName, productColor);
-		sc.close();
 		
 		return newProduct;
 		
