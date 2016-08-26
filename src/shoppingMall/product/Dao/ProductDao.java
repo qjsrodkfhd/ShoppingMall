@@ -38,10 +38,14 @@ public class ProductDao {
 		boolean success = false;
 		
 			try{
+				
 				ProductRepository.getProducts().remove(selectedProductNumber);
 				success = true;
+				
 			}catch(Exception e ){
+				
 				return success;
+				
 			}
 			
 		return success;
