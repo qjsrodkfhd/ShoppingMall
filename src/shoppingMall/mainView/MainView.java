@@ -55,7 +55,6 @@ public class MainView {
 
 					System.out.println("[기존 고객님 이시군요.]");
 					MainController.getLoginController().requestLogin();
-					MainController.getUserController().requestUserView();
 					break;
 
 				} else if (selectedNumber == 0) {

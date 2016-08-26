@@ -13,7 +13,7 @@ public class UserRepository {
 		
 		users = new ArrayList<User>();
 		lastUserPosition=0;
-		User admin = new User("admin","1111", null, null, null, 0, null);
+		User admin = new User("admin","1111", "-", "Admin", "-", 0, "-");
 		users.add(admin);
 		
 	}
