@@ -3,6 +3,7 @@ package shoppingMall.User.View;
 import java.util.Scanner;
 
 import shoppingMall.User.Vo.User;
+import shoppingMall.mainController.MainController;
 
 public class UserView {
 	
@@ -16,7 +17,7 @@ public class UserView {
 	}
 
 	
-	public User userSignUpView(){
+	public void userSignUpView(){
 		
 		User userSign = new User();
 		
@@ -44,8 +45,8 @@ public class UserView {
 		String userTel = keyboard.next();
 		
 		userSign = new User(userID,userPW, userEmail, userName, userAddr, userAge, userTel);
-		
-		return userSign;
+		MainController.getUserController().requestUserData(userSign);
+	
 		
 	}
 

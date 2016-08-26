@@ -3,6 +3,7 @@ package shoppingMall.Login.View;
 import java.util.Scanner;
 
 import shoppingMall.Login.Vo.Login;
+import shoppingMall.mainController.MainController;
 
 public class LoginView {
 	
@@ -16,9 +17,7 @@ public class LoginView {
 	}
 
 	
-	public Login loginView(){
-		
-		Login login;
+	public void loginView(){
 		
 		System.out.println("로그인");
 		
@@ -28,9 +27,10 @@ public class LoginView {
 		System.out.println("[P W: ]");
 		String PW = keyboard.next();
 		
-		login = new Login(ID,PW);
+		Login login = new Login(ID,PW);
 		
-		return login;
+		MainController.getLoginController().requestLoginData(login);
+		
 		
 	}
 

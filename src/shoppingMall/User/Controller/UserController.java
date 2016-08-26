@@ -20,7 +20,13 @@ public class UserController {
 	public void requestUserSignUp(){
 
 		UserView userView = new UserView();
-		User user = userView.userSignUpView();
+		userView.userSignUpView();
+
+	}
+
+
+	public void requestUserData(User user){
+
 
 		boolean success = userDao.userSignUp(user);
 
@@ -29,15 +35,11 @@ public class UserController {
 			System.out.println("성공");
 			MainView mainView = new MainView();
 			mainView.mainView();
-			
 
 		}else{
 
 			System.out.println("실패");
-
 		}
-
 	}
-
 
 }

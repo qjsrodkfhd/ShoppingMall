@@ -19,8 +19,14 @@ public class LoginController {
 	public void requestLogin(){
 
 		LoginView loginView = new LoginView();
-		Login login = loginView.loginView();
+		loginView.loginView();
 
+
+	}
+
+	
+	public void requestLoginData(Login login){
+		
 		boolean success = loginDao.login(login);
 
 		if(success){
@@ -31,15 +37,8 @@ public class LoginController {
 
 			System.out.println("로그인 실패");
 		}
-
-
+		
 	}
-
-
-
-
-
-
 
 
 }

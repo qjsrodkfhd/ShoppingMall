@@ -10,8 +10,7 @@ public class LoginDao {
 	public LoginDao(){
 
 		new LoginRepository();
-		new UserRepository();
-
+	
 	}
 
 
