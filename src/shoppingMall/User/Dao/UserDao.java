@@ -18,18 +18,18 @@ public class UserDao {
 
 
 	//가입
-	public boolean userSignUp(User user){
+	public boolean userSignUp(User userSign){
 
 		boolean success = false;
 
 		int currentUserNumber = UserRepository.getLastUserPosition();
-		currentUserNumber = currentUserNumber++;
+		currentUserNumber = currentUserNumber + 1;
 		UserRepository.setLastUserPosition(currentUserNumber);
 
-		user.setUserNumber(currentUserNumber);
+		userSign.setUserNumber(currentUserNumber);
 
 		ArrayList<User> currentUsers = UserRepository.getUsers();
-		currentUsers.add(user);
+		currentUsers.add(userSign);
 
 		success = true;
 
@@ -49,22 +49,35 @@ public class UserDao {
 	}
 
 
-	public boolean searchUser(int searchNumber){
-
-		boolean success = false;
-
-		User user;
+	public User searchUser(int searchNumber){
+		
+		User selectedUser = null;
 
 		for(int i=0; i<UserRepository.getUsers().size(); i++){
 			if(searchNumber == UserRepository.getUsers().get(i).getUserNumber()){
-				user=UserRepository.getUsers().get(i);
+				selectedUser = UserRepository.getUsers().get(i);
 				break;
-
+			
 			}
 		}
 
-		return success;
+		return selectedUser;
 
+	}
+
+	//관리자가 탈퇴 시키는거
+	public User deleteUser(int searchNumber){
+		
+		User deleteUser = null;
+		
+		for(int i=0; i<UserRepository.getUsers().size(); i++){
+			if(searchNumber == UserRepository.getUsers().get(i).getUserNumber()){
+				UserRepository.getUsers().remove(i);
+			}
+		}
+		
+		return deleteUser;
+		
 	}
 
 }
