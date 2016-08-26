@@ -43,6 +43,7 @@ public class ProductDao {
 		ArrayList<Product> listAll = ProductRepository.getProducts();
 		return listAll;
 
+<<<<<<< HEAD
 	}
 
 
@@ -64,5 +65,42 @@ public class ProductDao {
 
 		return success;
 
+=======
+	}
+
+
+	//선택상품 삭제
+	public boolean deleteProduct(int selectedProductNumber) {
+
+		boolean success = false;
+
+		try {
+
+			ProductRepository.getProducts().remove(selectedProductNumber);
+			success = true;
+
+		} catch ( Exception e ) {
+			
+		}
+		
+		return success;
+
+	}
+	
+	
+	//선택상품 호출
+	public Product searchProduct(int searchProductNumber) {
+		
+		Product selectProduct = null;
+		
+		for(int i = 0 ; i < ProductRepository.getProducts().size() ; i++) {
+			if(searchProductNumber == ProductRepository.getProducts().get(i).getProductNumber()) {
+				selectProduct = ProductRepository.getProducts().get(i);
+			}
+		}
+		
+		return selectProduct;
+		
+>>>>>>> refs/remotes/origin/pr/12
 	}
 }

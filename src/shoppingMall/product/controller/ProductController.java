@@ -8,6 +8,7 @@ import shoppingMall.product.View.ProductDeleteView;
 import shoppingMall.product.View.ProductInsertView;
 import shoppingMall.product.View.ProductMenuView;
 import shoppingMall.product.View.ProductReadView;
+import shoppingMall.product.View.ProductSearchView;
 import shoppingMall.product.vo.Product;
 
 public class ProductController {
@@ -19,6 +20,38 @@ public class ProductController {
 		productDao = new ProductDao();
 
 	}
+	
+	
+	//제품검색
+	public void requestSearchProduct() {
+		
+		//제품 검색뷰 호출
+		ProductSearchView productSearchView = new ProductSearchView();
+		productSearchView.productSearch();
+		
+	}
+	
+	public Product requestSearchProductNumber(int searchProductNumber) {
+
+		//productDao를 통해 productRepository에 데이터 확인
+		Product searchProduct = productDao.searchProduct(searchProductNumber);
+		
+		MainAlertView mainAlertView = new MainAlertView();
+		
+		if(searchProduct == null) {
+			
+			mainAlertView.alert("[!]검색하신 상품이 없습니다.");
+			
+		} else {
+			
+			mainAlertView.alert("[!]상품을 찾았습니다.");
+			
+		}
+		
+		return searchProduct;
+
+	}
+	
 
 	//제품등록
 	public void requestRegisterProduct() {
