@@ -17,7 +17,13 @@ public class LoginView {
 	}
 
 	
+<<<<<<< HEAD
 	public void loginView(){
+=======
+	public Login loginView(){ //void
+		
+		Login login;
+>>>>>>> refs/remotes/origin/master
 		
 		System.out.println("로그인");
 		
@@ -31,6 +37,12 @@ public class LoginView {
 		
 		MainController.getLoginController().requestLoginData(login);
 		
+<<<<<<< HEAD
+=======
+		//컨트롤러 요청(login)
+		
+		return login;
+>>>>>>> refs/remotes/origin/master
 		
 	}
 

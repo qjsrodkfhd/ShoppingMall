@@ -17,7 +17,11 @@ public class UserView {
 	}
 
 	
+<<<<<<< HEAD
 	public void userSignUpView(){
+=======
+	public User userSignUpView(){ //void
+>>>>>>> refs/remotes/origin/master
 		
 		User userSign = new User();
 		

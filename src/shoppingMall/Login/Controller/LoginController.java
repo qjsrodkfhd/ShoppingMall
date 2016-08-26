@@ -37,8 +37,14 @@ public class LoginController {
 
 			System.out.println("로그인 실패");
 		}
+<<<<<<< HEAD
 		
 	}
 
 
+=======
+
+	}
+	
+>>>>>>> refs/remotes/origin/master
 }
