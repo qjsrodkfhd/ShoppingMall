@@ -16,9 +16,8 @@ public class LoginView {
 		
 	}
 
-	
 	public void loginView(){
-		
+
 		System.out.println("로그인");
 		
 		System.out.println("[I D: ]");
@@ -30,7 +29,6 @@ public class LoginView {
 		Login login = new Login(ID,PW);
 		
 		MainController.getLoginController().requestLoginData(login);
-		
 		
 	}
 

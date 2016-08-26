@@ -49,20 +49,18 @@ public class MainView {
 
 					System.out.println("[반갑습니다.신규 회원 이시군요.고객님과의 인연을 소중하게 생각합니다.]");
 					MainController.getUserController().requestUserSignUp();
-					isFind = true;
 					break;
 
 				} else if (selectedNumber == 2) {
 
 					System.out.println("[기존 고객님 이시군요.]");
 					MainController.getLoginController().requestLogin();
-					isFind = true;
 					break;
 
 				} else if (selectedNumber == 0) {
 
 					System.out.println("[시스템을 종료 합니다.]" + "\n" + "[이용해 주셔서 감사합니다.]");
-					System.exit(0);
+					MainController.systemExit();
 
 				} else {
 
@@ -72,6 +70,7 @@ public class MainView {
 				}
 
 			}
+			
 		}//end of requestMainMenuView()
 
 	}

@@ -1,11 +1,13 @@
 package shoppingMall.User.Controller;
 
 import java.util.ArrayList;
+
 import shoppingMall.User.Dao.UserDao;
 import shoppingMall.User.View.UserListView;
 import shoppingMall.User.View.UserSignView;
 import shoppingMall.User.Vo.User;
 import shoppingMall.mainView.MainView;
+
 
 public class UserController {
 
@@ -44,17 +46,18 @@ public class UserController {
 		}
 	}
 
-	
+
+
 	public void requestUserList(){
-		
+
 		ArrayList<User> userList = userDao.userList();
-		
+
 		UserListView userListView = new UserListView();
 		userListView.userListView(userList); 
-		
-		
-	
+
 	}
 
-
 }
+
+
+

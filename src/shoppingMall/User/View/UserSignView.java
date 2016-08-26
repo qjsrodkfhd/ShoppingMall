@@ -18,7 +18,7 @@ public class UserSignView {
 
 	
 	public void userSignUpView(){
-		
+	
 		User userSign = new User();
 		
 		System.out.println("회원가입");
@@ -37,7 +37,7 @@ public class UserSignView {
 		
 		System.out.println("[나 이: ]");
 		int userAge = keyboard.nextInt();
-		
+		 
 		System.out.println("[주 소: ]");
 		String userAddr = keyboard.next();
 		
@@ -47,7 +47,6 @@ public class UserSignView {
 		userSign = new User(userID,userPW, userEmail, userName, userAddr, userAge, userTel);
 		MainController.getUserController().requestUserData(userSign);
 	
-		
 	}
 
 }
