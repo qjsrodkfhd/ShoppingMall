@@ -1,12 +1,13 @@
 package shoppingMall.mainController;
 
 import shoppingMall.mainView.MainView;
+import shoppingMall.product.controller.ProductController;
 
 public class MainController {
 
 	// variable
 	// private static UserController userController;
-	// private static ProductController productController;
+	 private static ProductController productController;
 	// private static OrderController orderController;
 	// private static LoginController loginController;
 	// private static ArticleController articleController;	
@@ -27,9 +28,9 @@ public class MainController {
 //		return userController;
 //	}
 //
-//	public static ProductController getProductController() {
-//		return productController;
-//	}
+	public static ProductController getProductController() {
+		return productController;
+	}
 //
 //	public static OrderController getOrderController() {
 //		return orderController;
