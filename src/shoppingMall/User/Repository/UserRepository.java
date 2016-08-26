@@ -15,6 +15,8 @@ public class UserRepository {
 		lastUserPosition=0;
 		User admin = new User("admin","1111", "-", "Admin", "-", 0, "-");
 		users.add(admin);
+		User testUser = new User("1","1", "1", "1", "1", 1, "1");
+		users.add(testUser);
 		
 	}
 
