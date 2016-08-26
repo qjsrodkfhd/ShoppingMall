@@ -62,7 +62,7 @@ public class MainView {
 				} else if (selectedNumber == 0) {
 
 					System.out.println("[시스템을 종료 합니다.]" + "\n" + "[이용해 주셔서 감사합니다.]");
-					System.exit(0);
+					MainController.systemExit();
 
 				} else {
 
@@ -72,6 +72,7 @@ public class MainView {
 				}
 
 			}
+			
 		}//end of requestMainMenuView()
 
 	}

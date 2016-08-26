@@ -2,6 +2,7 @@ package shoppingMall.mainController;
 
 import shoppingMall.Login.Controller.LoginController;
 import shoppingMall.User.Controller.UserController;
+import shoppingMall.mainView.MainView;
 
 public class MainController {
 
@@ -44,4 +45,18 @@ public class MainController {
 //		return articleController;
 //	}
 
+	
+	public static void requestMainView(){
+		
+		MainView mainView = new MainView();
+		mainView.mainView();
+		
+	}
+	
+	public static void systemExit(){
+		
+		System.exit(0);
+		
+	}
+	
 }

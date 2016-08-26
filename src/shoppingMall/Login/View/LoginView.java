@@ -16,7 +16,7 @@ public class LoginView {
 	}
 
 	
-	public Login loginView(){
+	public Login loginView(){ //void
 		
 		Login login;
 		
@@ -29,6 +29,8 @@ public class LoginView {
 		String PW = keyboard.next();
 		
 		login = new Login(ID,PW);
+		
+		//컨트롤러 요청(login)
 		
 		return login;
 		

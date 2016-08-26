@@ -16,7 +16,7 @@ public class UserView {
 	}
 
 	
-	public User userSignUpView(){
+	public User userSignUpView(){ //void
 		
 		User userSign = new User();
 		
