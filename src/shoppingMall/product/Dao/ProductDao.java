@@ -42,29 +42,9 @@ public class ProductDao {
 
 		ArrayList<Product> listAll = ProductRepository.getProducts();
 		return listAll;
-
-<<<<<<< HEAD
-	}
-
-
-	//선택상품 삭제
-	public boolean deleteProduct(int selectedProductNumber) {
-
-		boolean success = false;
-
-		try {
-
-			ProductRepository.getProducts().remove(selectedProductNumber);
-			success = true;
-
-		} catch ( Exception e ) {
-			
-		}
 		
-		return success;
-
 	}
-	
+
 	
 	//선택상품 호출
 	public Product searchProduct(int searchProductNumber) {
@@ -79,7 +59,6 @@ public class ProductDao {
 		
 		return selectProduct;
 		
-=======
 	}
 
 
@@ -101,6 +80,6 @@ public class ProductDao {
 
 		return success;
 
->>>>>>> choiwj1012/master
 	}
+	
 }
