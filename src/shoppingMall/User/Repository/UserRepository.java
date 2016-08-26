@@ -12,12 +12,12 @@ public class UserRepository {
 	public UserRepository(){
 		
 		users = new ArrayList<User>();
-		lastUserPosition=0;
 		User admin = new User("admin","1111", "-", "Admin", "-", 0, "-");
-		users.add(admin);
+		users.add(0, admin);
 		User testUser = new User("1","1", "1", "1", "1", 1, "1");
-		users.add(testUser);
-		
+		testUser.setUserNumber(1);
+		users.add(1, testUser);
+		lastUserPosition = 1;
 	}
 
 	public static ArrayList<User> getUsers() {
