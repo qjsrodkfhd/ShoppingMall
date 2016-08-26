@@ -37,7 +37,7 @@ public class UserView {
 		
 		System.out.println("[나 이: ]");
 		int userAge = keyboard.nextInt();
-		
+		 
 		System.out.println("[주 소: ]");
 		String userAddr = keyboard.next();
 		

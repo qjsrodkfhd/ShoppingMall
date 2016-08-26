@@ -4,6 +4,7 @@ import shoppingMall.User.Dao.UserDao;
 import shoppingMall.User.View.UserView;
 import shoppingMall.User.Vo.User;
 import shoppingMall.mainView.MainView;
+import shoppingMall.mainView.UserMenuView;
 
 public class UserController {
 
@@ -42,4 +43,12 @@ public class UserController {
 		}
 	}
 
+	
+	public void requestUserView(){
+	
+		UserMenuView userMenuView = new UserMenuView();
+		userMenuView.userMenuView();
+		
+	}
+	
 }
