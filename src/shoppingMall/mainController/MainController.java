@@ -3,21 +3,22 @@ package shoppingMall.mainController;
 import shoppingMall.Login.Controller.LoginController;
 import shoppingMall.User.Controller.UserController;
 import shoppingMall.mainView.MainView;
+import shoppingMall.product.controller.ProductController;
 
 public class MainController {
 
 	// variable
-	private static UserController userController;
-	//private static ProductController productController;
-	//private static OrderController orderController;
-	private static LoginController loginController;
-	//private static ArticleController articleController;	
-
+	 private static UserController userController;
+	 private static ProductController productController;
+	// private static OrderController orderController;
+	 private static LoginController loginController;
+	// private static ArticleController articleController;	
+	
 	// constructor
 	public MainController(){
 
 		userController = new UserController();
-		//productController = new ProductController();
+		productController = new ProductController();
 		//orderController = new OrderController();
 		loginController = new LoginController();
 		//articleController = new ArticleController();
@@ -29,21 +30,13 @@ public class MainController {
 		return userController;
 	}
 
-//	public static ProductController getProductController() {
-//		return productController;
-//	}
-//
-//	public static OrderController getOrderController() {
-//		return orderController;
-//	}
+	public static ProductController getProductController() {
+		return productController;
+	}
 
 	public static LoginController getLoginController() {
 		return loginController;
 	}
-
-//	public static ArticleController getArticleController() {
-//		return articleController;
-//	}
 
 	
 	public static void requestMainView(){
@@ -52,6 +45,7 @@ public class MainController {
 		mainView.mainView();
 		
 	}
+	
 	
 	public static void systemExit(){
 		
