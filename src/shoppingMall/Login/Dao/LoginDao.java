@@ -3,7 +3,6 @@ package shoppingMall.Login.Dao;
 import shoppingMall.Login.Repository.LoginRepository;
 import shoppingMall.Login.Vo.Login;
 import shoppingMall.User.Repository.UserRepository;
-import shoppingMall.mainController.MainController;
 
 public class LoginDao {
 

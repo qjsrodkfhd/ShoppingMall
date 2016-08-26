@@ -25,7 +25,10 @@ public class ProductMenuView {
 			int selectedNumber = sc.nextInt();
 			
 			if(selectedNumber == 1) {
-				System.out.println("내용을 준비중 입니다. \n 불편을 드려 죄송 합니다.\n 빠른시일에 찾아 뵙겠습니다.");
+				
+				//상품조회
+				MainController.getProductController().requestSearchProduct();
+				
 			} else if (selectedNumber == 2) {
 				
 				//상품등록
