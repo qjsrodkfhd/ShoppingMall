@@ -17,12 +17,8 @@ public class UserView {
 	}
 
 	
-<<<<<<< HEAD
 	public void userSignUpView(){
-=======
-	public User userSignUpView(){ //void
->>>>>>> refs/remotes/origin/master
-		
+	
 		User userSign = new User();
 		
 		System.out.println("회원가입");
@@ -51,7 +47,6 @@ public class UserView {
 		userSign = new User(userID,userPW, userEmail, userName, userAddr, userAge, userTel);
 		MainController.getUserController().requestUserData(userSign);
 	
-		
 	}
 
 }
