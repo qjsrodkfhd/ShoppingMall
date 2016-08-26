@@ -8,6 +8,7 @@ public class MainController {
 	private static OrderController orderController;
 	private static LoginController loginController;
 	private static ArticleController articleController;
+	private static MainView mainView;
 	
 	public MainController(){
 		
@@ -16,6 +17,7 @@ public class MainController {
 		this.orderController = new OrderController();
 		this.loginController = new LoginController();
 		this.articleController = new ArticleController();
+		this.mainView = new MainView();
 		
 	}
 
