@@ -21,7 +21,7 @@ public class ProductRepository {
 		newProduct1.setProductNumber(2);
 		products.add(1, newProduct1);
 	
-		productLastposition = 1;
+		productLastposition = 2;
 		
 	}
 
