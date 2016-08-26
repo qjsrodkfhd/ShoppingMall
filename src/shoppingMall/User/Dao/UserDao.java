@@ -17,6 +17,7 @@ public class UserDao {
 	}
 
 	
+	//가입
 	public boolean userSignUp(User user){
 		
 		boolean success = false;
@@ -36,7 +37,7 @@ public class UserDao {
 			
 	}
 
-
+	//목록
 	public ArrayList<User> userList(){
 		
 		ArrayList<User> userList;
@@ -47,4 +48,6 @@ public class UserDao {
 		
 	}
 
+	
+	
 }

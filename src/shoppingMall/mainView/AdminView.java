@@ -2,6 +2,8 @@ package shoppingMall.mainView;
 
 import java.util.Scanner;
 
+import shoppingMall.mainController.MainController;
+
 public class AdminView {
 	
 	// variable
@@ -39,7 +41,7 @@ public class AdminView {
 				
 			} else if(selectedMenu == 2){ // 유저관리
 				
-				// 유저관리 연결해야함
+				MainController.getUserController().requestUserMenu();
 				
 			} else if(selectedMenu == 3){ // 게시판관리
 				
