@@ -9,6 +9,7 @@ import shoppingMall.product.View.ProductInsertView;
 import shoppingMall.product.View.ProductMenuView;
 import shoppingMall.product.View.ProductReadView;
 import shoppingMall.product.View.ProductSearchView;
+import shoppingMall.product.View.ProductSelectOneView;
 import shoppingMall.product.vo.Product;
 
 public class ProductController {
@@ -37,6 +38,7 @@ public class ProductController {
 		Product searchProduct = productDao.searchProduct(searchProductNumber);
 		
 		MainAlertView mainAlertView = new MainAlertView();
+		ProductSelectOneView productSelectOneView = new ProductSelectOneView();
 		
 		if(searchProduct == null) {
 			
@@ -46,6 +48,7 @@ public class ProductController {
 			
 			mainAlertView.alert("[!]상품을 찾았습니다.");
 			
+			productSelectOneView.selectOneProduct(searchProduct);
 		}
 		
 		return searchProduct;

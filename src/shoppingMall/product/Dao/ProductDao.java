@@ -42,7 +42,26 @@ public class ProductDao {
 
 		ArrayList<Product> listAll = ProductRepository.getProducts();
 		return listAll;
+		
+	}
 
+<<<<<<< HEAD
+	
+	//선택상품 호출
+	public Product searchProduct(int searchProductNumber) {
+		
+		Product selectProduct = null;
+		
+		for(int i = 0 ; i < ProductRepository.getProducts().size() ; i++) {
+			if(searchProductNumber == ProductRepository.getProducts().get(i).getProductNumber()) {
+				selectProduct = ProductRepository.getProducts().get(i);
+			}
+		}
+		
+		return selectProduct;
+		
+=======
+>>>>>>> refs/remotes/origin/master
 	}
 
 
@@ -65,6 +84,9 @@ public class ProductDao {
 		return success;
 
 	}
+<<<<<<< HEAD
+	
+=======
 
 
 	//선택상품 호출
@@ -82,4 +104,5 @@ public class ProductDao {
 
 	}
 
+>>>>>>> refs/remotes/origin/master
 }
