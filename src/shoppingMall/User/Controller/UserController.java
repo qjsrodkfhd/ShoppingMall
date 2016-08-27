@@ -13,8 +13,6 @@ import shoppingMall.User.View.UserSignView;
 import shoppingMall.User.View.UserUpdateView;
 import shoppingMall.User.Vo.User;
 import shoppingMall.mainController.MainController;
-import shoppingMall.mainView.MainAlertView;
-import shoppingMall.mainView.MainView;
 
 
 public class UserController {
@@ -130,6 +128,12 @@ public class UserController {
 	public void requestDeleteUserData(int deleteUserNumber){
 
 		User deleteUser = userDao.deleteUser(deleteUserNumber);
+		
+		if(deleteUser == null){
+			
+			MainController.requestMainAlertView("삭제되었습니다");
+			
+		}
 
 	}
 

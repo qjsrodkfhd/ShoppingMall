@@ -2,8 +2,6 @@ package shoppingMall.mainController;
 
 import shoppingMall.Login.Controller.LoginController;
 import shoppingMall.User.Controller.UserController;
-import shoppingMall.User.View.AdminView;
-import shoppingMall.User.View.UserMenuView;
 import shoppingMall.mainView.MainAlertView;
 import shoppingMall.mainView.MainView;
 import shoppingMall.order.controller.OrderController;
