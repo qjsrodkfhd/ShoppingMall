@@ -14,7 +14,7 @@ public class ProductDao {
 	}
 
 
-	//상품등록
+	// 상품등록
 	public boolean registerProduct(Product newProduct) {
 
 		boolean success = false;
@@ -37,27 +37,65 @@ public class ProductDao {
 	}
 
 
-	//상품목록호출	
+	// 상품전체목록 가져오기
 	public ArrayList<Product> readProduct() {
 
 		ArrayList<Product> listAll = ProductRepository.getProducts();
 		return listAll;
-		
-	}
 
-	
-	//선택상품 호출
+	} 
+
+
+	// 선택상품찾기
 	public Product searchProduct(int searchProductNumber) {
-		
+
 		Product selectProduct = null;
-		
+
 		for(int i = 0 ; i < ProductRepository.getProducts().size() ; i++) {
 			if(searchProductNumber == ProductRepository.getProducts().get(i).getProductNumber()) {
 				selectProduct = ProductRepository.getProducts().get(i);
 			}
 		}
-		
+
 		return selectProduct;
+
+	}
+
+
+	// 선택상품 수정
+	public boolean updateProduct(int selectedProductNumber, Product updateProduct){
+
+		boolean success = false;
+
+		for(int i=0; i<ProductRepository.getProducts().size(); i++){
+			if(selectedProductNumber == ProductRepository.getProducts().get(i).getProductNumber()){
+
+				if(updateProduct.getProductName() != null){
+					ProductRepository.getProducts().get(i).setProductName(updateProduct.getProductName());
+					success = true;
+				}
+
+				if(updateProduct.getProductPrice() != 0){
+					ProductRepository.getProducts().get(i).setProductPrice(updateProduct.getProductPrice());
+					success = true;
+				}
+
+				if(updateProduct.getProductBrandName() != null){
+					ProductRepository.getProducts().get(i).setProductBrandName(updateProduct.getProductBrandName());	
+					success = true;
+				}
+
+				if(updateProduct.getProductColor() != null){
+					ProductRepository.getProducts().get(i).setProductColor(updateProduct.getProductColor());
+					success = true;
+				}		
+
+			}
+
+		}
+
+
+		return success;
 
 	}
 

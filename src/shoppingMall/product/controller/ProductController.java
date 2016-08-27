@@ -10,6 +10,7 @@ import shoppingMall.product.View.ProductMenuView;
 import shoppingMall.product.View.ProductReadView;
 import shoppingMall.product.View.ProductSearchView;
 import shoppingMall.product.View.ProductSelectOneView;
+import shoppingMall.product.View.ProductUpdateView;
 import shoppingMall.product.vo.Product;
 
 public class ProductController {
@@ -132,14 +133,43 @@ public class ProductController {
 	}
 
 	
-	// 제품목록 수정
-	public void requestUpdateProductView() {
+	// 제품목록 수정을 위한 번호와 내용 받기
+	public void requestUpdateProductInfo() {
 
 		//제품 목록에서 수정할 제품 선택 View
+		ProductUpdateView productUpdateView = new ProductUpdateView();
+		productUpdateView.productUpdate();
 
 	}
 
 	
+	// 수정할 제품번호 받아서 수정요청
+	public void requestUpdateProduct(int selectedProductNumber, Product updateProduct){
+		
+		Product selectedProduct = productDao.searchProduct(selectedProductNumber);
+		
+		if(selectedProduct == null){
+			
+			MainController.requestMainAlertView("선택하신 상품이 없습니다");
+			return;
+			
+		}
+		
+		boolean success = productDao.updateProduct(selectedProductNumber, updateProduct);
+		
+		if(success){
+			
+			MainController.requestMainAlertView("수정에 성공하였습니다");
+			
+		} else {
+			
+			MainController.requestMainAlertView("수정에 실패하였습니다");
+			
+		}
+		
+	}
+	
+
 	// 관리자 상품관리메뉴뷰 요청
 	public void requestProductMenuView() {
 

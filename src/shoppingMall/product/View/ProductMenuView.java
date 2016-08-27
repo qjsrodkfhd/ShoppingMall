@@ -50,7 +50,7 @@ public class ProductMenuView {
 			} else if (selectedNumber == 4) {
 				
 				//상품수정
-				MainController.getProductController().requestUpdateProductView();
+				MainController.getProductController().requestUpdateProductInfo();
 				
 			} else if (selectedNumber == 5) {
 				
