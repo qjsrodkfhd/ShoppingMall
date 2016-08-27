@@ -54,14 +54,14 @@ public class UserController {
 
 		boolean success = userDao.userSignUp(userSign);
 
-		if(!success){
+		if(success){
 
-			MainController.requestMainAlertView("성공");
+			MainController.requestMainAlertView("가입에 성공하였습니다.");
 			MainController.requestMainView();
 
 		}else{
 			
-			MainController.requestMainAlertView("실패");
+			MainController.requestMainAlertView("동일한 아이디가 존재합니다. 재가입 해주세요");
 			
 		}
 
@@ -151,7 +151,7 @@ public class UserController {
 		if(success){
 
 			MainController.requestMainAlertView("성공");
-			MainController.requestMainView();
+			MainController.getUserController().requestUserMenuView();
 
 		}
 

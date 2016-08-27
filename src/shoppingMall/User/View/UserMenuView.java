@@ -46,9 +46,7 @@ public class UserMenuView {
 				
 			} else if(selectedMenu == 3){ // 로그아웃
 				
-				System.out.println("로그아웃 하였습니다");
 				MainController.getLoginController().requestLogOut();
-				MainController.requestMainView();
 				
 			} else if(selectedMenu == 4){ // 회원탈퇴
 				

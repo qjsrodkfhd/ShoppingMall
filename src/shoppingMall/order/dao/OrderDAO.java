@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import shoppingMall.order.repository.OrderRepository;
 import shoppingMall.order.vo.Order;
-import shoppingMall.product.repository.ProductRepository;
+import shoppingMall.product.vo.Product;
 
 public class OrderDAO {
 	
@@ -21,31 +21,65 @@ public class OrderDAO {
 
 	// method
 	// 요청 번호 주문 리스트에 넣기
-	public boolean order(Order order){
+	public boolean order(Order selectedOrder){
 
 		boolean success = false;
 		
-		for(int i=0; i<ProductRepository.getProducts().size(); i++){
-			if(order.getOrderNumber() == ProductRepository.getProducts().get(i).getProductNumber()){
-							
-				OrderRepository.getOrderList().get(OrderRepository.getLastOrderNumber()).setOrderNumber(OrderRepository.getLastOrderNumber() + 1);
-				OrderRepository.getOrderList().get(OrderRepository.getLastOrderNumber()).setProductNumber(order.getProductNumber());
-				OrderRepository.getOrderList().get(OrderRepository.getLastOrderNumber()).setProductName(ProductRepository.getProducts().get(order.getProductNumber()).getProductName());
-				OrderRepository.getOrderList().get(OrderRepository.getLastOrderNumber()).setDisplay(ProductRepository.getProducts().get(order.getProductNumber()).getProductBrandName());
-				OrderRepository.getOrderList().get(OrderRepository.getLastOrderNumber()).setColor(ProductRepository.getProducts().get(order.getProductNumber()).getProductColor());
-				OrderRepository.getOrderList().get(OrderRepository.getLastOrderNumber()).setPrice(ProductRepository.getProducts().get(order.getProductNumber()).getProductPrice());
-				OrderRepository.getOrderList().get(OrderRepository.getLastOrderNumber()).setProductCount(order.getProductCount());
-				OrderRepository.setLastOrderNumber(OrderRepository.getLastOrderNumber() + 1);
-					
-				success = true;
-				return success;
-
-			}
-		}
-
+		int orderNumber = OrderRepository.getLastOrderNumber();
+		orderNumber = orderNumber + 1;
+		
+		OrderRepository.setLastOrderNumber(orderNumber);
+		selectedOrder.setOrderNumber(orderNumber);
+		
+		ArrayList<Order> selectedOrderProduct = OrderRepository.getOrderList();
+		selectedOrderProduct.add(selectedOrder);
+		
+		success = true;
+		
 		return success;
 	}
 
+	
+	// 선택 주문한 상품이 존재하는지 확인
+	public boolean checkOrderProduct(Order selectedOrder, ArrayList<Product> allProductList){
+		
+		boolean isFind = false;
+		
+		for(int i = 0; i<allProductList.size(); i++){
+			if(selectedOrder.getProductNumber() == allProductList.get(i).getProductNumber()){
+				
+				isFind = true;
+				return isFind;
+				
+			}
+		}
+		
+		return isFind;
+		
+	}
+	
+	
+	// 선택한 상품이 장바구니에 이미 존재하는지 확인
+	public boolean checkOrderProductInCart(Order selectedOrder){
+		
+		boolean isFindInOrder = false;
+		
+		for(int i=0; i<OrderRepository.getOrderList().size(); i++){
+			
+			if(selectedOrder.getProductNumber() == OrderRepository.getOrderList().get(i).getProductNumber()){
+				
+				OrderRepository.getOrderList().get(i).setProductCount(selectedOrder.getProductCount());
+				isFindInOrder = true;
+				return isFindInOrder;
+				
+			}
+			
+		}
+		
+		return isFindInOrder;
+		
+	}
+	
 	
 	// 주문 리스트 전체 요청
 	public ArrayList<Order> selectAll(){
@@ -65,6 +99,7 @@ public class OrderDAO {
 			
 				if(updateOrder.getProductCount() == -1){
 					OrderRepository.getOrderList().remove(i);
+					return;
 				}
 				
 				OrderRepository.getOrderList().get(i).setProductCount(updateOrder.getProductCount());

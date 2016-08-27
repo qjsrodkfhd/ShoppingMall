@@ -25,7 +25,7 @@ public class OrderMenuView {
 		while(true){
 			
 			System.out.println("원하시는 항목을 선택해 주세요");
-			System.out.println("1. 상품구매  2. 상품상세 조회 3. 장바구니 확인 4. 장바구니 수정 5. 나가기");
+			System.out.println("1. 상품구매  2. 상품전체보기 3. 장바구니 확인 4. 장바구니 수정 5. 나가기");
 			int selectedMenu = keyboard.nextInt();
 
 			if(selectedMenu == 1){
@@ -35,8 +35,8 @@ public class OrderMenuView {
 				
 			} else if(selectedMenu == 2){
 				
-				// 상품상세조회
-				System.out.println("준비중입니다"); 
+				// 상품전체보기
+				 MainController.getProductController().requestReadProduct();
 
 			} else if(selectedMenu == 3){
 

@@ -15,8 +15,7 @@ public class MainController {
 	 private static UserController userController;
 	 private static ProductController productController;
 	 private static OrderController orderController;
-	 private static LoginController loginController;
-	// private static ArticleController articleController;	
+	 private static LoginController loginController;	
 	
 	// constructor
 	public MainController(){
@@ -25,7 +24,6 @@ public class MainController {
 		productController = new ProductController();
 		orderController = new OrderController();
 		loginController = new LoginController();
-		//articleController = new ArticleController();
 
 	}
 

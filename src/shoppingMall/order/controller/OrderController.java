@@ -9,6 +9,7 @@ import shoppingMall.order.view.OrderMenuView;
 import shoppingMall.order.view.SelectProductNumber;
 import shoppingMall.order.view.UpdateOrderView;
 import shoppingMall.order.vo.Order;
+import shoppingMall.product.vo.Product;
 
 public class OrderController {
 
@@ -34,19 +35,48 @@ public class OrderController {
 
 	public void requestOrder(){
 
+		// 상품목록 요청
+		MainController.getProductController().requestReadProduct();
+		
+		// 구매상품 선택
 		SelectProductNumber selectProductNumber = new SelectProductNumber(); 
 		Order selectedOrder = selectProductNumber.selectProductNumber();
-
-		boolean success = orderDAO.order(selectedOrder);
-
-		if(success){
-
-			MainController.requestMainAlertView("상품이 성공적으로 장바구니에 담겨졌습니다");
-
+		
+		// 전체상품리스트 요청
+		ArrayList<Product> allProductList = MainController.getProductController().requestAllProductList();
+		
+		// 선택한 상품이 존재하는시 확인
+		boolean isFind = orderDAO.checkOrderProduct(selectedOrder,allProductList);
+		
+		// 선택한 상품이 장바구니에 이미 존재하는지 확인
+		boolean isFindInOrder = orderDAO.checkOrderProductInCart(selectedOrder);
+		
+		if(!isFind){
+			
+			MainController.requestMainAlertView("선택하신 상품은 존재하지 않습니다.");
+			
 		} else {
-
-			MainController.requestMainAlertView("상품이 장바구니에 담겨지지 않았습니다");
-
+			
+			if(isFindInOrder){
+				
+				System.out.println("이미 존재하는 상품이므로 수량 추가 되었습니다");
+				
+			} else {
+				
+				boolean success = orderDAO.order(selectedOrder);
+				
+				if(success){
+					
+					MainController.requestMainAlertView("상품이 성공적으로 장바구니에 담겨졌습니다");	
+					
+				} else{
+					
+					MainController.requestMainAlertView("상품이 장바구니에 담겨지지 않았습니다");
+					
+				}
+					
+			}
+								
 		}
 
 	}
@@ -56,9 +86,10 @@ public class OrderController {
 	public void requestOrderList(){
 
 		ArrayList<Order> allOrderList = orderDAO.selectAll();
+		ArrayList<Product> allProductList = MainController.getProductController().requestAllProductList();
 
 		OrderListView orderListView = new OrderListView();
-		orderListView.orderListView(allOrderList);
+		orderListView.orderListView(allOrderList, allProductList);
 
 	}
 

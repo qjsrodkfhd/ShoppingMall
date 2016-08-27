@@ -94,6 +94,15 @@ public class ProductController {
 
 	}
 
+	//장바구니와 비교를 위한 제품전체목록 요청
+	public ArrayList<Product> requestAllProductList(){
+		
+		ArrayList<Product> allProductList = productDao.readProduct();
+		
+		return allProductList;
+		
+	}
+	
 	
 	//삭제할 제품 번호 가져오기
 	public void requestGetSelectedProductNumber(int selectedProductNumber) {

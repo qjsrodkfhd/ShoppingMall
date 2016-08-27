@@ -40,12 +40,27 @@ public class LoginController {
 		}else if(loginUserNumber == -1){
 
 			MainController.requestMainAlertView("로그인 실패");
-			
+
 		} else {
-			
+
 			MainController.requestMainAlertView("유저 로그인 성공");
 			MainController.getUserController().requestUserMenuView();
-			
+
+		}
+
+	}
+
+
+	// 로그아웃 요청
+	public void requestLogOut(){
+
+		boolean success = loginDao.logOut();
+		
+		if(success){
+
+			MainController.requestMainAlertView("로그아웃 되었습니다.");
+			MainController.requestMainView();
+
 		}
 
 	}
@@ -53,36 +68,16 @@ public class LoginController {
 
 	// 로그인 상태 체크 요청
 	public boolean requestLoginCheck(){
-	
+
 		boolean success = loginDao.checkLogin();
-		
-		if(success){
-			
-			MainController.requestMainAlertView("로그인 상태입니다.");
-			
-		}else{
-			
-			MainController.requestMainAlertView("로그인 되어있지 않습니다.");
-			
-		}
-		
-		return success;
-		
-	}
-	
-	
-	// 로그아웃 요청
-	public void requestLogOut(){
-		
-		boolean success = false;
-		
-		success = requestLoginCheck();
-		
+
 		if(!success){
-			
-			MainController.requestMainAlertView("로그아웃 되었습니다.");
-	
+
+			MainController.requestMainAlertView("로그인 되어있지 않습니다.");
+
 		}
+
+		return success;
 
 	}
 

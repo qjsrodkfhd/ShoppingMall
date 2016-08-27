@@ -3,6 +3,7 @@ package shoppingMall.Login.Dao;
 import shoppingMall.Login.Repository.LoginRepository;
 import shoppingMall.Login.Vo.Login;
 import shoppingMall.User.Repository.UserRepository;
+import shoppingMall.order.repository.OrderRepository;
 
 public class LoginDao {
 
@@ -21,6 +22,7 @@ public class LoginDao {
 		
 		for(int i = 0; i<UserRepository.getUsers().size(); i++){
 	
+			// 관리자인 경우 loginUserNumber를 0으로 한다.
 			if(login.getUserID().equals(UserRepository.getUsers().get(0).getUserID())&&
 					login.getUserPW().equals(UserRepository.getUsers().get(0).getUserPW())){
 					LoginRepository.setLogin(login);
@@ -30,6 +32,7 @@ public class LoginDao {
 				
 			}
 			
+			// 일반 유저의 경우 loginUserNumber를 각 유저번호와 같게 한다.
 			if(login.getUserID().equals(UserRepository.getUsers().get(i).getUserID())&&
 					login.getUserPW().equals(UserRepository.getUsers().get(i).getUserPW())){
 					LoginRepository.setLogin(login);
@@ -74,7 +77,7 @@ public class LoginDao {
 		LoginRepository.setLogin(null);
 		success = true;
 		
-		//상품 장바구니 널값이 필요함
+		OrderRepository.getOrderList().clear();
 		
 		return success;	
 		

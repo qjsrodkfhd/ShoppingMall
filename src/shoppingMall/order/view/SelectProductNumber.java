@@ -24,7 +24,7 @@ public class SelectProductNumber {
 		
 		System.out.println("주문을 원하시는 상품 번호를 선택하여 주십시오");
 		int selectedProductNumber = keyboard.nextInt();
-		order.setOrderNumber(selectedProductNumber);
+		order.setProductNumber(selectedProductNumber);
 		
 		System.out.println("주문하실 상품의 수량을 선택하여 주십시오");
 		int selectedProductCount = keyboard.nextInt();

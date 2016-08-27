@@ -21,7 +21,13 @@ public class UserDao {
 	public boolean userSignUp(User userSign){
 
 		boolean success = false;
-
+		
+		for(int i=0; i<UserRepository.getUsers().size(); i++){
+			if(userSign.getUserID().equals(UserRepository.getUsers().get(i).getUserID())){
+				return success;
+			}
+		}
+		
 		int currentUserNumber = UserRepository.getLastUserPosition();
 		currentUserNumber = currentUserNumber + 1;
 		UserRepository.setLastUserPosition(currentUserNumber);
@@ -29,7 +35,8 @@ public class UserDao {
 
 		ArrayList<User> currentUsers = UserRepository.getUsers();
 		currentUsers.add(userSign);
-
+		success = true;
+		
 		return success;
 
 	}
