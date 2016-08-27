@@ -6,9 +6,11 @@ import shoppingMall.product.vo.Product;
 
 public class ProductRepository {
 
+	// variable
 	private static ArrayList<Product> products;
 	private static int productLastposition;
 	
+	// constructor
 	public ProductRepository() {
 		
 		products = new ArrayList<Product>();
@@ -25,6 +27,7 @@ public class ProductRepository {
 		
 	}
 
+	// getter and setter
 	public static ArrayList<Product> getProducts() {
 		return products;
 	}

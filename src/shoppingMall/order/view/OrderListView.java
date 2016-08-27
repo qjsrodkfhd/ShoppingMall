@@ -8,6 +8,7 @@ import shoppingMall.order.vo.Order;
 public class OrderListView {
 
 	
+	// 상품 리스트 전체 보기
 	public void orderListView(ArrayList<Order> allOrderList){
 		
 		System.out.println("장바구니 상품목록 입니다");

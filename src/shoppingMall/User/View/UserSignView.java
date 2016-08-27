@@ -7,16 +7,18 @@ import shoppingMall.mainController.MainController;
 
 public class UserSignView {
 	
+	// variable
 	private Scanner keyboard;
 	
-	
+	// constructor
 	public UserSignView(){
 		
 		 keyboard = new Scanner(System.in);
 		
 	}
 
-	
+	// method
+	// 유저가입정보를 받기 위한 뷰
 	public void userSignUpView(){
 	
 		User userSign = new User();
@@ -44,7 +46,7 @@ public class UserSignView {
 		System.out.println("[전화번호: ]");
 		String userTel = keyboard.next();
 		
-		userSign = new User(userID,userPW, userEmail, userName, userAddr, userAge, userTel);
+		userSign = new User(userID, userPW, userEmail, userName, userAddr, userAge, userTel);
 		MainController.getUserController().requestUserData(userSign);
 
 	}

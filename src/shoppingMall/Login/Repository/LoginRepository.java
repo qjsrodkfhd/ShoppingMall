@@ -4,15 +4,18 @@ import shoppingMall.Login.Vo.Login;
 
 public class LoginRepository {
 	
+	// variable
 	private static Login login;
 	private static int loginUserNumber;
 
 	
+	// constructor
 	public LoginRepository(){
 		
 	}
 
-
+	
+	// getter and setter
 	public static int getLoginUserNumber() {
 		return loginUserNumber;
 	}
@@ -32,5 +35,4 @@ public class LoginRepository {
 		LoginRepository.login = login;
 	}
 
-	
 }

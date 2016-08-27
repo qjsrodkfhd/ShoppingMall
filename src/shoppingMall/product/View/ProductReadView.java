@@ -6,6 +6,8 @@ import shoppingMall.product.vo.Product;
 
 public class ProductReadView {
 	
+	// method
+	// 전체상품을 출력
 	public void productRead(ArrayList<Product> listAll) {
 		
 		System.out.println("---------------------------------------");

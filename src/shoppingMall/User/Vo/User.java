@@ -2,21 +2,21 @@ package shoppingMall.User.Vo;
 
 public class User {
 	
-	private int userNumber;
-	private String userID;
-	private String userPW;
-	private String userEmail;
-	private String userName;
-	private int userAge;
-	private String userAddr;
-	private String userTel;
+	// variable
+	private int userNumber; 	// 유저번호
+	private String userID;  	// 유저아이디
+	private String userPW;  	// 유저비밀번호
+	private String userEmail;	// 유저 이메일
+	private String userName;	// 유저 이름
+	private int userAge;		// 유저 나이
+	private String userAddr;	// 유저 주소
+	private String userTel;		// 유저 전화번호
 	
-	
+	// constructor
 	public User(){
 			
 		
 	}
-
 
 	public User(String userID, String userPW, String userEmail, 
 			String userName,String userAddr, int userAge,String userTel) {
@@ -31,7 +31,7 @@ public class User {
 
 	}
 
-
+	// getter and setter
 	public int getUserNumber() {
 		
 		return userNumber;
@@ -135,7 +135,5 @@ public class User {
 		return userID;
 		
 	}
-
-	
 	
 }

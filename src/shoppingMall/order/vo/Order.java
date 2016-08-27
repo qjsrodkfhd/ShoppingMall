@@ -3,7 +3,6 @@ package shoppingMall.order.vo;
 public class Order {
 
 	// variable
-	
 	// 주문 번호
 	private int orderNumber;
 	

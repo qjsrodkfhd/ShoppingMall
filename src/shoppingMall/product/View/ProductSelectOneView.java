@@ -4,6 +4,8 @@ import shoppingMall.product.vo.Product;
 
 public class ProductSelectOneView {
 
+	// method
+	// 선택된 상품에 대한 정보 출력
 	public void selectOneProduct(Product searchProduct) {
 
 		System.out.println("---------------------------------------");
@@ -17,6 +19,7 @@ public class ProductSelectOneView {
 		
 		System.out.println();
 		System.out.println("---------------------------------------");
+		
 	}
 
 }

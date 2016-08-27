@@ -6,16 +6,18 @@ import shoppingMall.mainController.MainController;
 
 public class DeleteUserView {
 	
+	// variable
 	private Scanner keyboard;
 	
-	
+	// constructor
 	public DeleteUserView(){
 		
 		keyboard = new Scanner(System.in);
 		
 	}
 
-	
+	// method
+	// 유저정보삭제를 위한 번호받기
 	public void deleteUserView(){
 		
 		System.out.println("회원 영구 삭제 메뉴 입니다.");
@@ -25,4 +27,5 @@ public class DeleteUserView {
 		MainController.getUserController().requestDeleteUserData(deleteUserNumber);
 		
 	}
+	
 }

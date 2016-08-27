@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import shoppingMall.mainController.MainController;
 
-//메인메뉴 (회원가입,로그인)관리
 public class MainView {
 
 	// variable
@@ -32,15 +31,11 @@ public class MainView {
 			String[] mainMenu = {"1. 회원가입", "2. 로그인", "0. 시스템종료"};
 
 			for(int i = 0; i < mainMenu.length; i++) {
-
 				System.out.println(mainMenu[i]);
-
 			}
 
 			System.out.println();
-
 			System.out.print("메뉴선택 : ");
-			Scanner keyboard = new Scanner(System.in);
 			int selectedNumber = keyboard.nextInt();
 			System.out.println();
 			System.out.println("------------------------------");

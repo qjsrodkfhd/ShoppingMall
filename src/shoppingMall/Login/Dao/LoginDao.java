@@ -6,7 +6,7 @@ import shoppingMall.User.Repository.UserRepository;
 
 public class LoginDao {
 
-
+	// constructor
 	public LoginDao(){
 
 		new LoginRepository();
@@ -14,7 +14,7 @@ public class LoginDao {
 	}
 
 
-	//로그인
+	// 로그인
 	public int login(Login login){
 
 		int loginUserNumber = -1;
@@ -45,6 +45,7 @@ public class LoginDao {
 	}
 	
 	
+	// 로그인상태 체크
 	public boolean checkLogin(){
 		
 		boolean success = false;
@@ -52,14 +53,20 @@ public class LoginDao {
 		Login login = LoginRepository.getLogin();
 		
 		if(login != null){
+			
 			success = true;
+			return success;
+			
+		} else {
+			
+			return success;
+			
 		}
-		
-		return success;
 		
 	}
 
 
+	// 로그아웃
 	public boolean logOut(){
 		
 		boolean success = false;

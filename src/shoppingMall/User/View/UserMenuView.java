@@ -1,8 +1,9 @@
-package shoppingMall.mainView;
+package shoppingMall.User.View;
 
 import java.util.Scanner;
 
 import shoppingMall.mainController.MainController;
+import shoppingMall.mainView.MainView;
 
 public class UserMenuView {
 
@@ -47,15 +48,13 @@ public class UserMenuView {
 				
 				System.out.println("로그아웃 하였습니다");
 				MainController.getLoginController().requestLogOut();
-				MainView mainView = new MainView();
-				mainView.mainView();
+				MainController.requestMainView();
 				
 			} else if(selectedMenu == 4){ // 회원탈퇴
 				
 				MainController.getUserController().requestWithdrawUser();
 				MainController.getLoginController().requestLogOut();
-				MainView mainView = new MainView();
-				mainView.mainView();
+				MainController.requestMainView();
 				
 			}
 			

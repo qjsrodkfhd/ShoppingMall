@@ -17,7 +17,8 @@ public class UpdateOrderView {
 	}
 
 
-	//method
+	// method
+	// 주문한 상품 수정하기
 	public Order orderUpdate(){
 
 		Order orderUpdate = new Order();
@@ -26,6 +27,7 @@ public class UpdateOrderView {
 		orderUpdate.setOrderNumber(selectedProductNum);
 		
 		while(true){
+			
 			System.out.println("1.수량 조정하기 || 2.주문 삭제하기 || 3. 나가기");
 			int selectedMenu = keyboard.nextInt();
 			int orderCount = 0;

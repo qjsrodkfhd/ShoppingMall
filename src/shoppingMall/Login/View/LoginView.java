@@ -7,15 +7,18 @@ import shoppingMall.mainController.MainController;
 
 public class LoginView {
 	
+	// variable
 	private Scanner keyboard;
 	
-	
+	// constructor
 	public LoginView(){
 		
 		keyboard = new Scanner(System.in);
 		
 	}
 
+	// method
+	// 로그인 입력창
 	public void loginView(){
 
 		System.out.println("로그인");

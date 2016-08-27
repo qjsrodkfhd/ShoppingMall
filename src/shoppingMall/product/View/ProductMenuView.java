@@ -6,11 +6,19 @@ import shoppingMall.mainController.MainController;
 
 public class ProductMenuView {
 	
+	// variable
+	private Scanner keyboard;
+	
+	// constructor
+	public ProductMenuView() {
+		
+		this.keyboard = new Scanner(System.in);
+		
+	}
+		
+	// method
+	// 상품관리 메뉴뷰 출력
 	public void productMenuView() {
-		
-		Scanner sc = new Scanner(System.in);
-		
-		boolean isFind = false;
 		
 		while(true) {
 			
@@ -22,7 +30,7 @@ public class ProductMenuView {
 			
 			System.out.println("[상품관리]");
 			System.out.println("번호선택 : ");
-			int selectedNumber = sc.nextInt();
+			int selectedNumber = keyboard.nextInt();
 			
 			if(selectedNumber == 1) {
 				
@@ -50,11 +58,13 @@ public class ProductMenuView {
 				break;
 				
 			} else {
+				
 				System.out.println("[!]없는 번호 입니다.");
+				
 			}
 			
-			
 		}//end of while
+		
 	}
 
 }

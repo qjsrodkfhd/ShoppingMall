@@ -27,6 +27,7 @@ public class Product {
 		
 	}
 
+	// getter and setter
 	public int getProductNumber() {
 		return productNumber;
 	}

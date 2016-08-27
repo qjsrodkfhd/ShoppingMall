@@ -6,8 +6,10 @@ import shoppingMall.mainController.MainController;
 
 public class UserManagementMenuView {
 
+	// variable
 	private Scanner keyboard;
 
+	// constructor
 	public UserManagementMenuView(){
 
 		this.keyboard = new Scanner(System.in);
@@ -15,6 +17,8 @@ public class UserManagementMenuView {
 	}
 
 
+	// method
+	// 유저관리메뉴 출력
 	public void userManagementMenuView(){
 
 		while(true){
@@ -46,7 +50,9 @@ public class UserManagementMenuView {
 				
 				System.out.println("선택하신 번호가 없습니다.");
 			}
+			
 		}
+		
 	}
 	
 }

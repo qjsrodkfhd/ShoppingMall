@@ -2,14 +2,14 @@ package shoppingMall.Login.Vo;
 
 public class Login {
 	
+	//variable
 	private String userID;
 	private String userPW;
 	
-	
+	//constructor
 	public Login(){
 	
 	}
-
 
 	public Login(String userID, String userPW) {
 		
@@ -18,7 +18,7 @@ public class Login {
 		
 	}
 
-
+	// getter and setter
 	public String getUserID() {
 		return userID;
 	}
@@ -38,5 +38,4 @@ public class Login {
 		this.userPW = userPW;
 	}
 
-	
 }

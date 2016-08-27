@@ -2,7 +2,7 @@ package shoppingMall.order.controller;
 
 import java.util.ArrayList;
 
-import shoppingMall.mainView.MainAlertView;
+import shoppingMall.mainController.MainController;
 import shoppingMall.order.dao.OrderDAO;
 import shoppingMall.order.view.OrderListView;
 import shoppingMall.order.view.OrderMenuView;
@@ -25,28 +25,27 @@ public class OrderController {
 	// method
 	// 주문 요청
 	public void requestOrderMenu(){
-		
+
 		OrderMenuView orderMenuView = new OrderMenuView();
 		orderMenuView.orderMenu();
-		
+
 	}
-	
-	
+
+
 	public void requestOrder(){
 
 		SelectProductNumber selectProductNumber = new SelectProductNumber(); 
 		Order selectedOrder = selectProductNumber.selectProductNumber();
 
 		boolean success = orderDAO.order(selectedOrder);
-		MainAlertView alertView = new MainAlertView();
 
 		if(success){
 
-			alertView.alert("상품이 성공적으로 장바구니에 담겨졌습니다");
+			MainController.requestMainAlertView("상품이 성공적으로 장바구니에 담겨졌습니다");
 
 		} else {
 
-			alertView.alert("상품이 장바구니에 담겨지지 않았습니다");
+			MainController.requestMainAlertView("상품이 장바구니에 담겨지지 않았습니다");
 
 		}
 
@@ -57,7 +56,7 @@ public class OrderController {
 	public void requestOrderList(){
 
 		ArrayList<Order> allOrderList = orderDAO.selectAll();
-			
+
 		OrderListView orderListView = new OrderListView();
 		orderListView.orderListView(allOrderList);
 
@@ -66,11 +65,11 @@ public class OrderController {
 
 	// 주문 리스트 수정 요청
 	public void requestUpdateOrder(){
-		
+
 		UpdateOrderView orderUpdateView = new UpdateOrderView();
 		Order updateOrder = orderUpdateView.orderUpdate();
 		orderDAO.updateOrder(updateOrder);
-		
+
 	}
 
 }
