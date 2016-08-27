@@ -3,7 +3,6 @@ package shoppingMall.User.View;
 import java.util.Scanner;
 
 import shoppingMall.mainController.MainController;
-import shoppingMall.mainView.MainView;
 
 public class UserMenuView {
 
