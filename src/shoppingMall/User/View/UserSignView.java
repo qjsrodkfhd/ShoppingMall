@@ -46,7 +46,7 @@ public class UserSignView {
 		
 		userSign = new User(userID,userPW, userEmail, userName, userAddr, userAge, userTel);
 		MainController.getUserController().requestUserData(userSign);
-	
+
 	}
 
 }

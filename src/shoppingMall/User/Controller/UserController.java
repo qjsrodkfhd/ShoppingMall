@@ -2,6 +2,7 @@ package shoppingMall.User.Controller;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
 import shoppingMall.User.Dao.UserDao;
 import shoppingMall.User.View.DeleteUserView;
 import shoppingMall.User.View.UserListView;
@@ -10,6 +11,7 @@ import shoppingMall.User.View.UserSearchView;
 import shoppingMall.User.View.UserSignView;
 import shoppingMall.User.View.UserUpdateView;
 import shoppingMall.User.Vo.User;
+import shoppingMall.mainController.MainController;
 import shoppingMall.mainView.MainAlertView;
 import shoppingMall.mainView.MainView;
 
@@ -26,6 +28,7 @@ public class UserController {
 	}
 
 
+	//유저메뉴
 	public void requestUserMenu(){
 
 		UserManagementMenuView userMenu = new UserManagementMenuView();
@@ -34,6 +37,7 @@ public class UserController {
 	}
 
 
+	//회원가입
 	public void requestUserSignUp(){
 
 		UserSignView userView = new UserSignView();
@@ -42,12 +46,12 @@ public class UserController {
 	}
 
 
+	//회원가입 데이터
 	public void requestUserData(User userSign){
 
-
 		boolean success = userDao.userSignUp(userSign);
-
-		if(success){
+		
+		if(!success){
 
 			System.out.println("성공");
 			MainView mainView = new MainView();
@@ -57,9 +61,23 @@ public class UserController {
 
 			System.out.println("실패");
 		}
+		
 	}
 
 
+	//체크중복아이디
+	public boolean requestCheckUserId(User newUser) {
+
+	      boolean success = false;
+
+	      success = userDao.checkUserId(newUser);
+	      
+	      return success;      
+
+	   }
+	
+	
+	//유저목록
 	public void requestUserList(){
 
 		ArrayList<User> userList = userDao.userList();
@@ -70,6 +88,7 @@ public class UserController {
 	}
 
 
+	//유저조회
 	public void requestUserSearch(){
 
 		UserSearchView userSearch = new UserSearchView();
@@ -78,6 +97,7 @@ public class UserController {
 	}
 
 
+	//유저조회 데이터
 	public void requestUserSearchData(int getSearchNumber){
 
 		User selectedUser = userDao.searchUser(getSearchNumber);
@@ -91,56 +111,59 @@ public class UserController {
 		UserSearchView userSearchView = new UserSearchView();
 		userSearchView.outputSearchProduct(selectedUser);
 
-
-
 	}
 
 
+	//유저삭제
 	public void requestDeleteUser(){
 
 		DeleteUserView deleteUserView = new DeleteUserView();
 		deleteUserView.deleteUserView();
 
-
 	}
 
 
+	//유저삭제 데이터
 	public void requestDeleteUserData(int deleteUserNumber){
 
 		User deleteUser = userDao.deleteUser(deleteUserNumber);
 
-
-
-
 	}
 
 
+	//유저수정
 	public void requestUpdateUser(){
 
 		UserUpdateView userUpdateView = new UserUpdateView();
 		userUpdateView.updateUserView();
-		
-	}
-	
 
-	public void requestUpdateUserData(User updateUser){
-		
-		boolean success = userDao.updateUser(updateUser);
-		
-		if(success){
+	}
+
 	
+	//유저수정데이터
+	public void requestUpdateUserData(User updateContent){
+
+
+		boolean success = userDao.updateUser(updateContent);
+
+		if(success){
+
 			System.out.println("성공");
 			MainView mainView = new MainView();
 			mainView.mainView();
 
-		}else{
-
-			System.out.println("실패");
-			
 		}
-		
+
 	}
 
+
+	//회원탈퇴
+	public void requestWithdrawUser(){
+		
+		userDao.withdrawUser();
+		new MainAlertView().alert("탈퇴 되었습니다.");
+		
+	}
 }
 
 
