@@ -106,11 +106,17 @@ public class ProductDao {
 		boolean success = false;
 
 		try{
-
-			ProductRepository.getProducts().remove(selectedProductNumber);
+			for(int i=0; i<ProductRepository.getProducts().size(); i++){
+				if(selectedProductNumber == ProductRepository.getProducts().get(i).getProductNumber()){
+					
+					ProductRepository.getProducts().remove(i);
+					
+				}
+			}
+			
 			success = true;
 
-		}catch(Exception e ){
+		}catch(Exception e){
 
 			return success;
 
