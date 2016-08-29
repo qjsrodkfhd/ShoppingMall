@@ -24,7 +24,7 @@ public class UserManagementMenuView {
 		while(true){
 
 			System.out.println("유저관리메뉴");
-			System.out.println("1.유저리스트 2.유저조회 3.유저강퇴 4.나가기");
+			System.out.println("1.유저리스트 2.유저조회 3.유저삭제 4.나가기");
 			int selectUserManagementMemu = keyboard.nextInt();
 
 			if(selectUserManagementMemu == 1){
@@ -39,7 +39,7 @@ public class UserManagementMenuView {
 
 			}else if(selectUserManagementMemu == 3){
 
-				System.out.println("유저 강퇴 메뉴입니다.");
+				System.out.println("유저 삭제 메뉴입니다.");
 				MainController.getUserController().requestDeleteUser();
 
 			}else if(selectUserManagementMemu == 4){
