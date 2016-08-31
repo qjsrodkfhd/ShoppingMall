@@ -150,14 +150,14 @@ public class UserController {
 	// 유저수정데이터
 	public void requestUpdateUserData(User updateContent){
 
-		boolean success = userDao.updateUser(updateContent);
+		//boolean success = userDao.updateUser(updateContent);
 
-		if(success){
-
-			MainController.requestMainAlertView("성공");
-			MainController.getUserController().requestUserMenuView();
-
-		}
+//		if(success){
+//
+//			MainController.requestMainAlertView("성공");
+//			MainController.getUserController().requestUserMenuView();
+//
+//		}
 
 	}
 
@@ -165,7 +165,7 @@ public class UserController {
 	// 회원탈퇴
 	public void requestWithdrawUser(){
 
-		userDao.withdrawUser();
+		//userDao.withdrawUser();
 		MainController.requestMainAlertView("탈퇴 되었습니다.");
 
 	}

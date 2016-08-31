@@ -9,7 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 import shoppingMall.product.vo.Product;
 
 public class ProductDao {
@@ -107,6 +110,7 @@ public class ProductDao {
 				if(productString == null){
 					break;
 				}
+<<<<<<< HEAD
 
 				StringTokenizer stringTokenizer = new StringTokenizer(productString, ",");
 
@@ -121,6 +125,12 @@ public class ProductDao {
 					listAll.add(product);
 				}	
 
+=======
+				
+				//StringTokenizer stringTokenizer = new StringTokenizer(productString, ",");
+				
+			
+>>>>>>> refs/remotes/origin/master
 			}
 
 		} catch(FileNotFoundException e) {
@@ -143,6 +153,7 @@ public class ProductDao {
 	} 
 
 
+<<<<<<< HEAD
 	// 선택상품찾기
 	public Product searchProduct(int searchProductNumber) {
 
@@ -307,6 +318,106 @@ public class ProductDao {
 					fileReader.close();
 				}catch(IOException e){
 					e.printStackTrace();
+=======
+//	// 선택상품찾기
+//	public Product searchProduct(int searchProductNumber) {
+//
+//		Product selectProduct = null;
+//
+//		for(int i = 0 ; i < ProductRepository.getProducts().size() ; i++) {
+//			if(searchProductNumber == ProductRepository.getProducts().get(i).getProductNumber()) {
+//				selectProduct = ProductRepository.getProducts().get(i);
+//			}
+//		}
+//
+//		return selectProduct;
+//
+//	}
+//
+//
+//	// 선택상품 수정
+//	public boolean updateProduct(int selectedProductNumber, Product updateProduct){
+//
+//		boolean success = false;
+//
+//		for(int i=0; i<ProductRepository.getProducts().size(); i++){
+//			if(selectedProductNumber == ProductRepository.getProducts().get(i).getProductNumber()){
+//
+//				if(updateProduct.getProductName() != null){
+//					ProductRepository.getProducts().get(i).setProductName(updateProduct.getProductName());
+//					success = true;
+//				}
+//
+//				if(updateProduct.getProductPrice() != 0){
+//					ProductRepository.getProducts().get(i).setProductPrice(updateProduct.getProductPrice());
+//					success = true;
+//				}
+//
+//				if(updateProduct.getProductBrandName() != null){
+//					ProductRepository.getProducts().get(i).setProductBrandName(updateProduct.getProductBrandName());	
+//					success = true;
+//				}
+//
+//				if(updateProduct.getProductColor() != null){
+//					ProductRepository.getProducts().get(i).setProductColor(updateProduct.getProductColor());
+//					success = true;
+//				}		
+//
+//			}
+//
+//		}
+//
+//
+//		return success;
+//
+//	}
+//
+//
+//	//선택상품 삭제
+//	public boolean deleteProduct(int selectedProductNumber) {
+//
+//		boolean success = false;
+//
+//		try{
+//			for(int i=0; i<ProductRepository.getProducts().size(); i++){
+//				if(selectedProductNumber == ProductRepository.getProducts().get(i).getProductNumber()){
+//					
+//					ProductRepository.getProducts().remove(i);
+//					
+//				}
+//			}
+//			
+//			success = true;
+//
+//		}catch(Exception e){
+//
+//			return success;
+//
+//		}
+//
+//		return success;
+//
+//	}
+	
+	public int productLastPosition(){
+		
+		int lastProductNumber = 0;
+		
+		FileReader fileReader = null;
+		BufferedReader bufferedReader = null;
+		
+		try{
+			
+			fileReader = new FileReader(file);
+			bufferedReader = new BufferedReader(fileReader);
+			
+			while(true){
+				
+				String productString = bufferedReader.readLine();
+				
+				if(productString == null){
+					break;
+>>>>>>> refs/remotes/origin/master
 				}
 
 			}
