@@ -1,17 +1,37 @@
 package shoppingMall.Login.Dao;
 
-import shoppingMall.Login.Repository.LoginRepository;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
 import shoppingMall.Login.Vo.Login;
-import shoppingMall.User.Repository.UserRepository;
-import shoppingMall.order.repository.OrderRepository;
 
 public class LoginDao {
+
+	File loginFile;
+	File userFile;
 
 	// constructor
 	public LoginDao(){
 
-		new LoginRepository();
-		
+		loginFile = new File("login.txt");
+		userFile = new File("user.txt");
+
+		try{		
+
+			loginFile.createNewFile();
+
+		} catch(IOException e) {
+
+			e.printStackTrace();
+
+		}
+
 	}
 
 
@@ -19,68 +39,173 @@ public class LoginDao {
 	public int login(Login login){
 
 		int loginUserNumber = -1;
-		
-		for(int i = 0; i<UserRepository.getUsers().size(); i++){
-	
-			// 관리자인 경우 loginUserNumber를 0으로 한다.
-			if(login.getUserID().equals(UserRepository.getUsers().get(0).getUserID())&&
-					login.getUserPW().equals(UserRepository.getUsers().get(0).getUserPW())){
-					LoginRepository.setLogin(login);
-				
-				loginUserNumber = 0;
-				return loginUserNumber;
-				
+
+		FileWriter loginFileWriter = null;
+		BufferedWriter loginBufferedWriter = null;
+
+		FileReader loginFileReader = null;
+		BufferedReader loginBufferedReader = null;
+
+		FileReader userFileReader = null;
+		BufferedReader userBufferedReader = null;
+
+		String loginUserID = null;
+		String loginUserPW = null;
+
+		String userID = null;
+		String userPW = null;
+
+		try{
+
+			loginFileWriter = new FileWriter(loginFile);
+			loginBufferedWriter = new BufferedWriter(loginFileWriter);
+
+			loginBufferedWriter.write(login.getUserID() + ",");
+			loginBufferedWriter.write(login.getUserPW() + "\r\n");
+
+			loginFileReader = new FileReader(loginFile);
+			loginBufferedReader = new BufferedReader(loginFileReader);
+
+			String loginString = loginBufferedReader.readLine();
+			StringTokenizer stringTokenizer = new StringTokenizer(loginString, ",");
+
+			if(stringTokenizer.hasMoreTokens()){
+
+				loginUserID = stringTokenizer.nextToken();
+				loginUserPW = stringTokenizer.nextToken();
+
+			}	
+
+			userFileReader = new FileReader(userFile);
+			userBufferedReader = new BufferedReader(userFileReader);
+
+			while(true){
+
+				String userString = userBufferedReader.readLine();
+
+				if(userString == null){
+					break;
+				}
+
+				StringTokenizer userStringTokenizer = new StringTokenizer(userString, ",");
+
+				if(userStringTokenizer.hasMoreTokens()){
+
+					loginUserNumber = Integer.parseInt(stringTokenizer.nextToken());
+					userID = stringTokenizer.nextToken();
+					userPW = stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+
+					if(loginUserID.equals("admin") && loginUserPW.equals(1111)){
+
+						loginUserNumber = 1;
+
+						return loginUserNumber;
+					}
+
+					if(loginUserID.equals(userID) && loginUserPW.equals(userPW)){
+
+						return loginUserNumber;
+					}
+				}				
 			}
-			
-			// 일반 유저의 경우 loginUserNumber를 각 유저번호와 같게 한다.
-			if(login.getUserID().equals(UserRepository.getUsers().get(i).getUserID())&&
-					login.getUserPW().equals(UserRepository.getUsers().get(i).getUserPW())){
-					LoginRepository.setLogin(login);
-					LoginRepository.setLoginUserNumber(i);
-					
-				loginUserNumber = i;
-				break;
-			}			
-		}		
-		
+
+		} catch(FileNotFoundException e) {
+
+			e.printStackTrace();
+
+		} catch(IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try{
+
+				userBufferedReader.close();
+				userFileReader.close();
+				loginBufferedReader.close();
+				loginFileReader.close();
+				loginBufferedWriter.close();
+				loginFileWriter.close();
+
+			} catch(IOException e) {
+
+				e.printStackTrace();
+
+			}
+		}
+
 		return loginUserNumber;
-		
+
 	}
-	
-	
+
+
 	// 로그인상태 체크
 	public boolean checkLogin(){
-		
+
 		boolean success = false;
-		
-		Login login = LoginRepository.getLogin();
-		
-		if(login != null){
-			
-			success = true;
-			return success;
-			
-		} else {
-			
-			return success;
-			
+
+		FileReader loginFileReader = null;
+		BufferedReader loginBufferedReader = null;
+
+		try{
+
+			loginFileReader = new FileReader(loginFile);
+			loginBufferedReader = new BufferedReader(loginFileReader);
+			String loginString = loginBufferedReader.readLine();
+
+			if(loginString == null){
+				return success;
+			} 
+
+		} catch(FileNotFoundException e) {
+
+			e.printStackTrace();
+
+		} catch(IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try{
+
+				loginBufferedReader.close();
+				loginFileReader.close();
+
+			} catch(IOException e) {
+
+				e.printStackTrace();
+
+			}
+
 		}
-		
+
+		success = true;
+		return success;
+
 	}
 
 
 	// 로그아웃
 	public boolean logOut(){
-		
+
 		boolean success = false;
-		
-		LoginRepository.setLogin(null);
+
+		loginFile.delete();
+
 		success = true;
-		
-		OrderRepository.getOrderList().clear();
-		
+
+		File file = new File("order.txt");
+		file.delete();
+
 		return success;	
-		
+
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.Scanner;
 import shoppingMall.Login.Vo.Login;
 import shoppingMall.mainController.MainController;
 
+
 public class LoginView {
 	
 	// variable
