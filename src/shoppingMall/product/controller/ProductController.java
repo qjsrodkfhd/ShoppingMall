@@ -87,7 +87,7 @@ public class ProductController {
 	public void requestReadProduct() {
 
 		//productDao를 통해 productRepository에서 데이터 호출
-		ArrayList<Product> listAll = productDao.readProduct();
+		ArrayList<Product> listAll = productDao.productAll();
 
 		//productView를 호출
 		ProductReadView productReadView = new ProductReadView();
@@ -98,7 +98,7 @@ public class ProductController {
 	//장바구니와 비교를 위한 제품전체목록 요청
 	public ArrayList<Product> requestAllProductList(){
 		
-		ArrayList<Product> allProductList = productDao.readProduct();
+		ArrayList<Product> allProductList = productDao.productAll();
 		
 		return allProductList;
 		
