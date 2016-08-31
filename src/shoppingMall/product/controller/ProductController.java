@@ -36,28 +36,28 @@ public class ProductController {
 	}
 	
 	
-//	// 선택한 상품을 찾는 요청
-//	public Product requestSearchProductNumber(int searchProductNumber) {
-//
-//		// productDao를 통해 productRepository에 데이터 확인
-//		Product searchProduct = productDao.searchProduct(searchProductNumber);
-//		
-//		ProductSelectOneView productSelectOneView = new ProductSelectOneView();
-//		
-//		if(searchProduct == null) {
-//			
-//			MainController.requestMainAlertView("[!]검색하신 상품이 없습니다.");
-//			
-//		} else {
-//			
-//			MainController.requestMainAlertView("[!]상품을 찾았습니다.");
-//			productSelectOneView.selectOneProduct(searchProduct);
-//		}
-//		
-//		return searchProduct;
-//
-//	}
-//	
+	// 선택한 상품을 찾는 요청
+	public Product requestSearchProductNumber(int searchProductNumber) {
+
+		// productDao를 통해 productRepository에 데이터 확인
+		Product searchProduct = productDao.searchProduct(searchProductNumber);
+		
+		ProductSelectOneView productSelectOneView = new ProductSelectOneView();
+		
+		if(searchProduct == null) {
+			
+			MainController.requestMainAlertView("[!]검색하신 상품이 없습니다.");
+			
+		} else {
+			
+			MainController.requestMainAlertView("[!]상품을 찾았습니다.");
+			productSelectOneView.selectOneProduct(searchProduct);
+		}
+		
+		return searchProduct;
+
+	}
+	
 
 	//제품등록
 	public void requestRegisterProduct() {
@@ -105,22 +105,22 @@ public class ProductController {
 	}
 	
 	
-//	//삭제할 제품 번호 가져오기
-//	public void requestGetSelectedProductNumber(int selectedProductNumber) {
-//
-//		//productDao를 통해 productRepository에 데이터 삭제
-//		boolean success = productDao.deleteProduct(selectedProductNumber);
-//
-//		if(success == true) {
-//			
-//			MainController.requestMainAlertView("[!]삭제되었습니다.");
-//
-//		} else {
-//			
-//			MainController.requestMainAlertView("[!]삭제를 실패 하였습니다.");
-//
-//		}
-//	}
+	//삭제할 제품 번호 가져오기
+	public void requestGetSelectedProductNumber(int selectedProductNumber) {
+
+		//productDao를 통해 productRepository에 데이터 삭제
+		boolean success = productDao.deleteProduct(selectedProductNumber);
+
+		if(success == true) {
+			
+			MainController.requestMainAlertView("[!]삭제되었습니다.");
+
+		} else {
+			
+			MainController.requestMainAlertView("[!]삭제를 실패 하였습니다.");
+
+		}
+	}
 
 	
 	//제품목록 삭제
@@ -143,31 +143,31 @@ public class ProductController {
 	}
 
 	
-//	// 수정할 제품번호 받아서 수정요청
-//	public void requestUpdateProduct(int selectedProductNumber, Product updateProduct){
-//		
-//		Product selectedProduct = productDao.searchProduct(selectedProductNumber);
-//		
-//		if(selectedProduct == null){
-//			
-//			MainController.requestMainAlertView("선택하신 상품이 없습니다");
-//			return;
-//			
-//		}
-//		
-//		boolean success = productDao.updateProduct(selectedProductNumber, updateProduct);
-//		
-//		if(success){
-//			
-//			MainController.requestMainAlertView("수정에 성공하였습니다");
-//			
-//		} else {
-//			
-//			MainController.requestMainAlertView("수정에 실패하였습니다");
-//			
-//		}
-//		
-//	}
+	// 수정할 제품번호 받아서 수정요청
+	public void requestUpdateProduct(int selectedProductNumber, Product updateProduct){
+		
+		Product selectedProduct = productDao.searchProduct(selectedProductNumber);
+		
+		if(selectedProduct == null){
+			
+			MainController.requestMainAlertView("선택하신 상품이 없습니다");
+			return;
+			
+		}
+		
+		boolean success = productDao.updateProduct(selectedProductNumber, updateProduct);
+		
+		if(success){
+			
+			MainController.requestMainAlertView("수정에 성공하였습니다");
+			
+		} else {
+			
+			MainController.requestMainAlertView("수정에 실패하였습니다");
+			
+		}
+		
+	}
 	
 
 	// 관리자 상품관리메뉴뷰 요청

@@ -32,7 +32,7 @@ public class LoginController {
 
 		int loginUserNumber = loginDao.login(login);
 
-		if(loginUserNumber == 1){
+		if(loginUserNumber == 0){
 
 			MainController.requestMainAlertView("관리자로그인성공");
 			MainController.getUserController().requestAdminView();

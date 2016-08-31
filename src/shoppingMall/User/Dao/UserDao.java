@@ -1,40 +1,17 @@
 package shoppingMall.User.Dao;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
+import shoppingMall.Login.Repository.LoginRepository;
+import shoppingMall.User.Repository.UserRepository;
 import shoppingMall.User.Vo.User;
 
 public class UserDao {
 
-	File file;
-
 	// constructor
 	public UserDao(){
 
-		file = new File("user.txt");
-
-		try{
-
-			boolean newFile = file.createNewFile();	
-
-			if(newFile){
-				System.out.println("파일 생성");	
-			} else {
-				System.out.println("파일 존재");
-			}
-
-		} catch(IOException e) {
-			System.out.println("파일 실패");
-			e.printStackTrace();
-		}
+		new UserRepository();
 
 	}
 
@@ -43,51 +20,24 @@ public class UserDao {
 	// 가입
 	public boolean userSignUp(User userSign){
 
-		boolean signUpSuccess = false;
+		boolean success = false;
 		
-		boolean isFindID = this.checkUserId(userSign);
-
-		if(isFindID){
-			return signUpSuccess; 
-		}
-		
-		FileWriter fileWriter = null;
-		BufferedWriter bufferedWriter = null;
-
-		try{
-			fileWriter = new FileWriter(file, true);	
-			bufferedWriter = new BufferedWriter(fileWriter);
-			
-			int lastUserNumber = lastUserNumber() + 1;
-			userSign.setUserNumber(lastUserNumber);
-			
-			bufferedWriter.write(userSign.getUserNumber() + ",");
-			bufferedWriter.write(userSign.getUserID() + ",");
-			bufferedWriter.write(userSign.getUserPW() + ",");
-			bufferedWriter.write(userSign.getUserEmail() + ",");
-			bufferedWriter.write(userSign.getUserName() + ",");
-			bufferedWriter.write(userSign.getUserAge() + ",");
-			bufferedWriter.write(userSign.getUserAddr() + ",");
-			bufferedWriter.write(userSign.getUserTel() + "\r\n");
-			
-		} catch(FileNotFoundException e){
-			e.printStackTrace();		
-		} catch(IOException e){
-			e.printStackTrace();
-		} finally {
-			
-			try{
-				
-				bufferedWriter.close();
-				fileWriter.close();
-				
-			} catch(IOException e) {
-				e.printStackTrace();
+		for(int i=0; i<UserRepository.getUsers().size(); i++){
+			if(userSign.getUserID().equals(UserRepository.getUsers().get(i).getUserID())){
+				return success;
 			}
-			
 		}
 		
-		return signUpSuccess;
+		int currentUserNumber = UserRepository.getLastUserPosition();
+		currentUserNumber = currentUserNumber + 1;
+		UserRepository.setLastUserPosition(currentUserNumber);
+		userSign.setUserNumber(currentUserNumber);
+
+		ArrayList<User> currentUsers = UserRepository.getUsers();
+		currentUsers.add(userSign);
+		success = true;
+		
+		return success;
 
 	}
 
@@ -95,62 +45,17 @@ public class UserDao {
 	//중복아이디 체크
 	public boolean checkUserId(User userCheckId){
 
-		boolean isFindID = false;
+		boolean success = false;
 
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-
-		try{
-
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-
-			while(true){
-
-				String userInfoString = bufferedReader.readLine();
-
-				if(userInfoString == null){
-					break;
-				}
-
-				StringTokenizer stringTokenizer = new StringTokenizer(userInfoString, ",");
-
-				if(stringTokenizer.hasMoreTokens()){
-
-					stringTokenizer.nextToken();
-					String id = stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-
-					if(id.equals(userCheckId.getUserID())){
-						isFindID = true;
-						return isFindID;
-					}
-
-				}
-
+		for(int i=0; i<UserRepository.getUsers().size(); i++){
+			if(userCheckId.getUserID() == UserRepository.getUsers().get(i).getUserID()){
+				
+				return success;
+				
 			}
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-
-			try{
-				bufferedReader.close();
-				fileReader.close();
-			} catch(IOException e){
-				e.printStackTrace();
-			}
-
 		}
 
-		return isFindID;
+		return success;
 
 	}
 
@@ -158,56 +63,10 @@ public class UserDao {
 	//목록
 	public ArrayList<User> userList(){
 
-		ArrayList<User> userList = new ArrayList<User>();
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try{
-			
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			
-			while(true){
-				
-				String userString = bufferedReader.readLine();
-				
-				if(userString == null){
-					break;
-				}
-				
-				StringTokenizer stringTokenizer = new StringTokenizer(userString, ",");
-				
-				if(stringTokenizer.hasMoreTokens()){
-					
-					int userNumber = Integer.parseInt(stringTokenizer.nextToken());
-					String userID = stringTokenizer.nextToken();
-					String userPW = stringTokenizer.nextToken();
-					String userEmail = stringTokenizer.nextToken();
-					String userName = stringTokenizer.nextToken();
-					int userAge = Integer.parseInt(stringTokenizer.nextToken());
-					String userAddr = stringTokenizer.nextToken();
-					String userTel = stringTokenizer.nextToken();
-					
-					User newUser = new User(userNumber, userID, userPW, userEmail, userName, userAge, userAddr, userTel);
-					userList.add(newUser);
-					
-				}
-				
-			}
-			
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			try{
-				bufferedReader.close();
-				fileReader.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
+		ArrayList<User> userList;
+
+		userList = UserRepository.getUsers();
+
 		return userList;
 
 	}
@@ -217,75 +76,16 @@ public class UserDao {
 	public User searchUser(int searchNumber){
 
 		User selectedUser = null;
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try{
-			
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			
-			while(true){
+
+		for(int i=0; i<UserRepository.getUsers().size(); i++){
+			if(searchNumber == UserRepository.getUsers().get(i).getUserNumber()){
 				
-				String userString = bufferedReader.readLine();
-				
-				if(userString == null){
-					break;
-				}
-				
-				StringTokenizer stringTokenizer = new StringTokenizer(userString, ",");
-				
-				if(stringTokenizer.hasMoreTokens()){
-					
-					int userNumber = Integer.parseInt(stringTokenizer.nextToken());
-					
-					if(searchNumber == userNumber){
-						
-						selectedUser = new User();
-						selectedUser.setUserNumber(userNumber);
-						
-						String userID = stringTokenizer.nextToken();
-						selectedUser.setUserID(userID);
-						
-						String userPW = stringTokenizer.nextToken();
-						selectedUser.setUserPW(userPW);
-						
-						String userEmail = stringTokenizer.nextToken();
-						selectedUser.setUserEmail(userEmail);
-						
-						String userName = stringTokenizer.nextToken();
-						selectedUser.setUserName(userName);
-						
-						int userAge = Integer.parseInt(stringTokenizer.nextToken());
-						selectedUser.setUserAge(userAge);
-						
-						String userAddr = stringTokenizer.nextToken();
-						selectedUser.setUserAddr(userAddr);
-						
-						String userTel = stringTokenizer.nextToken();
-						selectedUser.setUserTel(userTel);
-							
-					}
-					
-				}
-					
+				selectedUser = UserRepository.getUsers().get(i);
+				break;
+
 			}
-	
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			
-			try{
-				bufferedReader.close();
-				fileReader.close();
-			} catch(IOException e){
-				e.printStackTrace();
-			}
-			
 		}
-		
+
 		return selectedUser;
 
 	}
@@ -295,134 +95,43 @@ public class UserDao {
 	public User deleteUser(int searchNumber){
 
 		User deleteUser = null;
-		
-		ArrayList<User> userList = userList();
-		
-		for(int i=0; i<userList.size(); i++){
-			if(searchNumber == userList.get(i).getUserNumber()){
-				userList.remove(i);
-			}
-		}
-		
-		FileWriter fileWriter = null;
-		BufferedWriter bufferedWriter = null;
-		
-		try{
-			
-			fileWriter = new FileWriter(file);
-			bufferedWriter = new BufferedWriter(fileWriter);
-			
-			for(int i=0; i<userList.size(); i++){
+
+		for(int i=0; i<UserRepository.getUsers().size(); i++){
+			if(searchNumber == UserRepository.getUsers().get(i).getUserNumber()){
 				
-				bufferedWriter.write(userList.get(i).getUserNumber() + ",");
-				bufferedWriter.write(userList.get(i).getUserID() + ",");
-				bufferedWriter.write(userList.get(i).getUserPW() + ",");
-				bufferedWriter.write(userList.get(i).getUserEmail() + ",");
-				bufferedWriter.write(userList.get(i).getUserName() + ",");
-				bufferedWriter.write(userList.get(i).getUserAge() + ",");
-				bufferedWriter.write(userList.get(i).getUserAddr() + ",");
-				bufferedWriter.write(userList.get(i).getUserTel() + "\r\n");
+				UserRepository.getUsers().remove(i);
 				
 			}
-			
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			try{
-				bufferedWriter.close();
-				fileWriter.close();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
 		}
-		
-		
+
 		return deleteUser;
 
 	}
 
 
-//	//유저정보수정
-//	public boolean updateUser(User updateUser){
-//
-//		boolean success = false;
-//
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserAddr(updateUser.getUserAddr());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserEmail(updateUser.getUserEmail());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserName(updateUser.getUserName());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserPW(updateUser.getUserPW());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserTel(updateUser.getUserTel());
-//
-//		success = true;
-//
-//		return success;
-//
-//	}
-//
-//
-//	//회원탈퇴
-//	public User withdrawUser(){
-//
-//		return UserRepository.getUsers().remove(LoginRepository.getLoginUserNumber());
-//
-//	}
+	//유저정보수정
+	public boolean updateUser(User updateUser){
 
-	
-	// 유저번호찾기
-	public int lastUserNumber(){
+		boolean success = false;
+
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserAddr(updateUser.getUserAddr());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserEmail(updateUser.getUserEmail());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserName(updateUser.getUserName());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserPW(updateUser.getUserPW());
+		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserTel(updateUser.getUserTel());
+
+		success = true;
 		
-		int lastUserNumber = 0;
-		
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try{
-			
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			
-			while(true){
-				
-				String userString = bufferedReader.readLine();
-				
-				if(userString == null){
-					break;
-				}
-				
-				StringTokenizer stringTokenizer = new StringTokenizer(userString, ",");
-				
-				if(stringTokenizer.hasMoreTokens()){
-					lastUserNumber = Integer.parseInt(stringTokenizer.nextToken());
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-				}
-				
-			}
-			
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			
-			try{
-				bufferedReader.close();
-				fileReader.close();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
-		return lastUserNumber;
-		
+		return success;
+
 	}
-	
+
+
+	//회원탈퇴
+	public User withdrawUser(){
+
+		return UserRepository.getUsers().remove(LoginRepository.getLoginUserNumber());
+
+	}
+
 }
