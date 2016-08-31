@@ -1,6 +1,10 @@
 package shoppingMall.product.vo;
 
 public class Product {
+	
+	public Product(){
+		
+	}
 
 	//상품번호
 	private int productNumber;
@@ -26,7 +30,18 @@ public class Product {
 		this.productColor = productColor;
 		
 	}
+	
+	
+	public Product(int productNumber, String productName, int productPrice, String productBrandName, String productColor) {
 
+		this.productNumber = productNumber;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productBrandName = productBrandName;
+		this.productColor = productColor;
+	
+	}
+	
 	// getter and setter
 	public int getProductNumber() {
 		return productNumber;
