@@ -12,6 +12,7 @@ public class ProductRepository {
 	
 	// constructor
 	public ProductRepository() {
+<<<<<<< HEAD
 		
 		products = new ArrayList<Product>();
 		
@@ -37,6 +38,9 @@ public class ProductRepository {
 		
 		productLastposition = 5;
 		
+=======
+			
+>>>>>>> parent of 86c1990... update login
 	}
 
 	// getter and setter
