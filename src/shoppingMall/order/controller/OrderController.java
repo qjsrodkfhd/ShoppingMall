@@ -59,8 +59,7 @@ public class OrderController {
 			
 			if(isFindInOrder){
 				
-				System.out.println("이미 존재하는 상품입니다");
-				System.out.println("수정하시려면 수정하기를 눌러주세요");
+				System.out.println("이미 존재하는 상품이므로 수량 추가 되었습니다");
 				
 			} else {
 				

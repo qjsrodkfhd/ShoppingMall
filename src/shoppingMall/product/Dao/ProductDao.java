@@ -1,40 +1,15 @@
 package shoppingMall.product.Dao;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import shoppingMall.product.repository.ProductRepository;
 import shoppingMall.product.vo.Product;
 
 public class ProductDao {
 
-	private File file;
-	
 	public ProductDao() {
 
-		file = new File("product.txt");
-		
-		try{
-			
-			boolean newFile = file.createNewFile();
-			
-			if(newFile){
-				System.out.println("파일생성");
-			} else {
-				System.out.println("파일존재");
-			}
-			
-		} catch (IOException e) {
-			System.out.println("실패");
-			e.printStackTrace();
-		}
+		new ProductRepository();
 
 	}
 
@@ -44,46 +19,19 @@ public class ProductDao {
 
 		boolean success = false;
 
-		FileWriter fileWriter = null;
-		BufferedWriter bufferedWriter = null;
-		
-		try{
-			
-			fileWriter = new FileWriter(file);
-			bufferedWriter = new BufferedWriter(fileWriter);
-			
-			int productNumber = productLastPosition() + 1;
-			newProduct.setProductNumber(productNumber);
-			
-			bufferedWriter.write(newProduct.getProductNumber() + ",");
-			bufferedWriter.write(newProduct.getProductName() + ",");
-			bufferedWriter.write(newProduct.getProductPrice() + ",");
-			bufferedWriter.write(newProduct.getProductBrandName() + ",");
-			bufferedWriter.write(newProduct.getProductColor() + "\r\n");
-
-			success = true;
+		if(newProduct == null) {
 
 			return success;
-	
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			
-			try{
-				
-				bufferedWriter.close();
-				fileWriter.close();
-				
-			} catch(IOException e){
-				
-				e.printStackTrace();
-				
-			}
-			
+
+		} else {
+
+			ProductRepository.setProductLastposition(ProductRepository.getProductLastposition() + 1);
+			newProduct.setProductNumber(ProductRepository.getProductLastposition());
+			ProductRepository.getProducts().add(newProduct);
+			success = true;
+
 		}
-		
+
 		return success;
 
 	}
@@ -92,43 +40,7 @@ public class ProductDao {
 	// 상품전체목록 가져오기
 	public ArrayList<Product> readProduct() {
 
-		ArrayList<Product> listAll = new ArrayList<Product>();
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try{
-			
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			
-			while(true){
-				
-				String productString = bufferedReader.readLine();
-				
-				if(productString == null){
-					break;
-				}
-				
-				StringTokenizer stringTokenizer = new StringTokenizer(productString, ",");
-				
-			
-			}
-			
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			
-			try{
-				bufferedReader.close();
-				fileReader.close();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-			
-		}
-			
+		ArrayList<Product> listAll = ProductRepository.getProducts();
 		return listAll;
 
 	} 
@@ -212,57 +124,6 @@ public class ProductDao {
 
 		return success;
 
-	}
-	
-	public int productLastPosition(){
-		
-		int lastProductNumber = 0;
-		
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		
-		try{
-			
-			fileReader = new FileReader(file);
-			bufferedReader = new BufferedReader(fileReader);
-			
-			while(true){
-				
-				String productString = bufferedReader.readLine();
-				
-				if(productString == null){
-					break;
-				}
-				
-				StringTokenizer stringTokenizer = new StringTokenizer(productString, ",");
-				
-				if(stringTokenizer.hasMoreTokens()){
-					lastProductNumber = Integer.parseInt(stringTokenizer.nextToken());
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-				}	
-				
-			}
-					
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			
-			try{
-				bufferedReader.close();
-				fileReader.close();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-			
-		}
-		
-		return lastProductNumber;
-		
 	}
 
 }
