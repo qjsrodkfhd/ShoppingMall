@@ -40,29 +40,52 @@ public class LoginDao {
 
 		int loginUserNumber = -1;
 
-		FileWriter loginFileWriter = null;
-		BufferedWriter loginBufferedWriter = null;
-
-		FileReader loginFileReader = null;
-		BufferedReader loginBufferedReader = null;
-
-		FileReader userFileReader = null;
-		BufferedReader userBufferedReader = null;
+		String userID = null;
+		String userPW = null;
 
 		String loginUserID = null;
 		String loginUserPW = null;
 
-		String userID = null;
-		String userPW = null;
+		FileWriter loginFileWriter = null;
+		BufferedWriter loginBufferedWriter = null;
 
 		try{
 
+			// 로그인 정보 파일에 쓰기
 			loginFileWriter = new FileWriter(loginFile);
 			loginBufferedWriter = new BufferedWriter(loginFileWriter);
 
 			loginBufferedWriter.write(login.getUserID() + ",");
 			loginBufferedWriter.write(login.getUserPW() + "\r\n");
 
+		} catch(FileNotFoundException e) {
+
+			e.printStackTrace();
+
+		} catch(IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try{
+
+				loginBufferedWriter.close();
+				loginFileWriter.close();
+
+			} catch(IOException e) {
+
+				e.printStackTrace();
+
+			}
+		}
+
+
+		FileReader loginFileReader = null;
+		BufferedReader loginBufferedReader = null;
+
+		try{
+			// 로그인한 정보 파일 읽기
 			loginFileReader = new FileReader(loginFile);
 			loginBufferedReader = new BufferedReader(loginFileReader);
 
@@ -74,8 +97,36 @@ public class LoginDao {
 				loginUserID = stringTokenizer.nextToken();
 				loginUserPW = stringTokenizer.nextToken();
 
-			}	
+			}		
 
+		}catch(FileNotFoundException e) {
+
+			e.printStackTrace();
+
+		} catch(IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try{
+
+				loginBufferedReader.close();
+				loginFileReader.close();
+
+			} catch(IOException e) {
+
+				e.printStackTrace();
+
+			}
+		}
+
+
+		FileReader userFileReader = null;
+		BufferedReader userBufferedReader = null;
+
+		try{
+			// 유저 정보 파일 읽기
 			userFileReader = new FileReader(userFile);
 			userBufferedReader = new BufferedReader(userFileReader);
 
@@ -91,14 +142,14 @@ public class LoginDao {
 
 				if(userStringTokenizer.hasMoreTokens()){
 
-					loginUserNumber = Integer.parseInt(stringTokenizer.nextToken());
-					userID = stringTokenizer.nextToken();
-					userPW = stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
-					stringTokenizer.nextToken();
+					loginUserNumber = Integer.parseInt(userStringTokenizer.nextToken());
+					userID = userStringTokenizer.nextToken();
+					userPW = userStringTokenizer.nextToken();
+					userStringTokenizer.nextToken();
+					userStringTokenizer.nextToken();
+					userStringTokenizer.nextToken();
+					userStringTokenizer.nextToken();
+					userStringTokenizer.nextToken();
 
 					if(loginUserID.equals("admin") && loginUserPW.equals(1111)){
 
@@ -114,7 +165,7 @@ public class LoginDao {
 				}				
 			}
 
-		} catch(FileNotFoundException e) {
+		}catch(FileNotFoundException e) {
 
 			e.printStackTrace();
 
@@ -128,10 +179,6 @@ public class LoginDao {
 
 				userBufferedReader.close();
 				userFileReader.close();
-				loginBufferedReader.close();
-				loginFileReader.close();
-				loginBufferedWriter.close();
-				loginFileWriter.close();
 
 			} catch(IOException e) {
 
@@ -139,7 +186,7 @@ public class LoginDao {
 
 			}
 		}
-
+		
 		return loginUserNumber;
 
 	}
