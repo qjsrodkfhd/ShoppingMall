@@ -19,7 +19,7 @@ public class User {
 	}
 
 	public User(String userID, String userPW, String userEmail, 
-			String userName,String userAddr, int userAge,String userTel) {
+			String userName,String userAddr, int userAge, String userTel) {
 		
 		this.userID = userID;
 		this.userPW = userPW;
@@ -30,7 +30,22 @@ public class User {
 		this.userTel = userTel;
 
 	}
+	
+	public User(int userNumber, String userID, String userPW, String userEmail, 
+			String userName, int userAge, String userAddr, String userTel) {
+		
+		this.userNumber = userNumber;
+		this.userID = userID;
+		this.userPW = userPW;
+		this.userEmail = userEmail;
+		this.userName = userName;
+		this.userAge = userAge;
+		this.userAddr= userAddr;
+		this.userTel = userTel;
 
+	}
+
+	
 	// getter and setter
 	public int getUserNumber() {
 		
@@ -135,5 +150,12 @@ public class User {
 		return userID;
 		
 	}
+	
+	public void setUserID(String userID) {
+		
+		this.userID = userID;
+		
+	}
+
 	
 }
