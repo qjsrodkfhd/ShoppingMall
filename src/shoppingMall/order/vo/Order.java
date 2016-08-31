@@ -18,6 +18,14 @@ public class Order {
 		this.productCount = 1;
 		
 	}
+	
+	public Order(int orderNumber, int productNumber, int productCount){
+		
+		this.orderNumber = orderNumber;
+		this.productNumber = productNumber;
+		this.productCount = productCount;
+		
+	}
 
 	// getter and setter
 	public int getOrderNumber() {

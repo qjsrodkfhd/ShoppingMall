@@ -1,11 +1,22 @@
 package shoppingMall.product.Dao;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 import java.util.StringTokenizer;
 <<<<<<< HEAD
 >>>>>>> parent of 86c1990... update login
+=======
+import java.util.StringTokenizer;
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 
 import shoppingMall.product.repository.ProductRepository;
 =======
@@ -18,6 +29,7 @@ import shoppingMall.product.vo.Product;
 
 public class ProductDao {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	public ProductDao() {
 
@@ -33,17 +45,36 @@ public class ProductDao {
 
 			boolean newFile = file.createNewFile();
 
+=======
+	private File file;
+	
+	public ProductDao() {
+
+		file = new File("product.txt");
+		
+		try{
+			
+			boolean newFile = file.createNewFile();
+			
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 			if(newFile){
 				System.out.println("파일생성");
 			} else {
 				System.out.println("파일존재");
 			}
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 		} catch (IOException e) {
 			System.out.println("실패");
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/pr/16
+=======
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 
 	}
 
@@ -53,6 +84,7 @@ public class ProductDao {
 
 		boolean success = false;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		if(newProduct == null) {
 
@@ -69,29 +101,48 @@ public class ProductDao {
 			int productNumber = productLastPosition() + 1;
 			newProduct.setProductNumber(productNumber);
 
+=======
+		FileWriter fileWriter = null;
+		BufferedWriter bufferedWriter = null;
+		
+		try{
+			
+			fileWriter = new FileWriter(file);
+			bufferedWriter = new BufferedWriter(fileWriter);
+			
+			int productNumber = productLastPosition() + 1;
+			newProduct.setProductNumber(productNumber);
+			
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 			bufferedWriter.write(newProduct.getProductNumber() + ",");
 			bufferedWriter.write(newProduct.getProductName() + ",");
 			bufferedWriter.write(newProduct.getProductPrice() + ",");
 			bufferedWriter.write(newProduct.getProductBrandName() + ",");
 			bufferedWriter.write(newProduct.getProductColor() + "\r\n");
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/pr/16
 
 		} else {
+=======
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 
-			ProductRepository.setProductLastposition(ProductRepository.getProductLastposition() + 1);
-			newProduct.setProductNumber(ProductRepository.getProductLastposition());
-			ProductRepository.getProducts().add(newProduct);
 			success = true;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 			return success;
 
+=======
+			return success;
+	
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
+<<<<<<< HEAD
 
 			try{
 
@@ -105,8 +156,22 @@ public class ProductDao {
 			}
 
 >>>>>>> refs/remotes/origin/pr/16
+=======
+			
+			try{
+				
+				bufferedWriter.close();
+				fileWriter.close();
+				
+			} catch(IOException e){
+				
+				e.printStackTrace();
+				
+			}
+			
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 		}
-
+		
 		return success;
 
 	}
@@ -115,6 +180,7 @@ public class ProductDao {
 	// 상품전체목록 가져오기
 	public ArrayList<Product> productAll() {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ArrayList<Product> listAll = ProductRepository.getProducts();
 =======
@@ -150,25 +216,53 @@ public class ProductDao {
 				}	
 
 =======
+=======
+		ArrayList<Product> listAll = new ArrayList<Product>();
+		FileReader fileReader = null;
+		BufferedReader bufferedReader = null;
+		
+		try{
+			
+			fileReader = new FileReader(file);
+			bufferedReader = new BufferedReader(fileReader);
+			
+			while(true){
+				
+				String productString = bufferedReader.readLine();
+				
+				if(productString == null){
+					break;
+				}
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 				
 				StringTokenizer stringTokenizer = new StringTokenizer(productString, ",");
 				
 			
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/master
 			}
 
+=======
+			}
+			
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
+<<<<<<< HEAD
 
+=======
+			
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 			try{
 				bufferedReader.close();
 				fileReader.close();
 			}catch(IOException e){
 				e.printStackTrace();
 			}
+<<<<<<< HEAD
 
 		}
 <<<<<<< HEAD
@@ -177,6 +271,11 @@ public class ProductDao {
 =======
 
 >>>>>>> refs/remotes/origin/pr/16
+=======
+			
+		}
+			
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 		return listAll;
 
 	} 
@@ -332,6 +431,7 @@ public class ProductDao {
 		return success;
 
 	}
+<<<<<<< HEAD
 =======
 		FileWriter fileWriter = null;
 		BufferedWriter bufferedWriter = null;
@@ -505,6 +605,8 @@ public class ProductDao {
 //
 //	}
 >>>>>>> refs/remotes/origin/pr/16
+=======
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 	
 	public int productLastPosition(){
 		
@@ -524,6 +626,7 @@ public class ProductDao {
 				
 				if(productString == null){
 					break;
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> parent of 86c1990... update login
 				}
@@ -545,6 +648,39 @@ public class ProductDao {
 
 		return success;
 
+=======
+				}
+				
+				StringTokenizer stringTokenizer = new StringTokenizer(productString, ",");
+				
+				if(stringTokenizer.hasMoreTokens()){
+					lastProductNumber = Integer.parseInt(stringTokenizer.nextToken());
+					stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+					stringTokenizer.nextToken();
+				}	
+				
+			}
+					
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try{
+				bufferedReader.close();
+				fileReader.close();
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return lastProductNumber;
+		
+>>>>>>> parent of 93f7781... Revert "update fileio Order and Product"
 	}
 
 
