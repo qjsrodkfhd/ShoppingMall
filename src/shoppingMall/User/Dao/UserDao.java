@@ -349,30 +349,73 @@ public class UserDao {
 	}
 
 
-//	//유저정보수정
-//	public boolean updateUser(User updateUser){
-//
-//		boolean success = false;
-//
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserAddr(updateUser.getUserAddr());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserEmail(updateUser.getUserEmail());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserName(updateUser.getUserName());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserPW(updateUser.getUserPW());
-//		UserRepository.getUsers().get(LoginRepository.getLoginUserNumber()).setUserTel(updateUser.getUserTel());
-//
-//		success = true;
-//
-//		return success;
-//
-//	}
-//
-//
-//	//회원탈퇴
-//	public User withdrawUser(){
-//
-//		return UserRepository.getUsers().remove(LoginRepository.getLoginUserNumber());
-//
-//	}
+	//유저정보수정
+	public boolean updateUser(User updateUser){
+
+		boolean success = false;
+		
+		ArrayList<User> users = userList();
+		
+		for(int i=0; i<users.size(); i++){
+			if(updateUser.getUserNumber() == users.get(i).getUserNumber()){
+				
+				users.get(i).setUserName(updateUser.getUserName());
+				users.get(i).setUserPW(updateUser.getUserPW());
+				users.get(i).setUserEmail(updateUser.getUserEmail());
+				users.get(i).setUserAddr(updateUser.getUserAddr());
+				users.get(i).setUserTel(updateUser.getUserTel());
+				
+			}
+		}
+
+		FileWriter fileWriter = null;
+		BufferedWriter bufferedWriter = null;
+		
+		try{
+			fileWriter = new FileWriter(file);
+			bufferedWriter = new BufferedWriter(fileWriter);
+			
+			for(int i=0; i<users.size(); i++){
+				
+				bufferedWriter.write(users.get(i).getUserNumber() + ",");
+				bufferedWriter.write(users.get(i).getUserID() + ",");
+				bufferedWriter.write(users.get(i).getUserPW() + ",");
+				bufferedWriter.write(users.get(i).getUserEmail() + ",");
+				bufferedWriter.write(users.get(i).getUserName() + ",");
+				bufferedWriter.write(users.get(i).getUserAge() + ",");
+				bufferedWriter.write(users.get(i).getUserAddr() + ",");
+				bufferedWriter.write(users.get(i).getUserTel() + "\r\n");
+				
+			}
+			
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try{
+				bufferedWriter.close();
+				fileWriter.close();
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+			
+		}
+		
+		success = true;
+
+		return success;
+
+	}
+
+
+	//회원탈퇴
+	public User withdrawUser(){
+
+		return UserRepository.getUsers().remove(LoginRepository.getLoginUserNumber());
+
+	}
 
 	
 	// 유저번호찾기
